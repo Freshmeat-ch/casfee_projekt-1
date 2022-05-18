@@ -1,5 +1,7 @@
 :root {
-  --font-size: 16px;
+  --font-family-logo: "Dosis", sans-serif;
+  --font-family: "Fira Sans", sans-serif;
+  --font-size: 18px;
   --spacing: 10px;
 
   --lighten-percentage: 20%;
@@ -99,10 +101,6 @@ body {
   background: var(--primary-color-light);
 }
 
-.show {
-  display: block;
-}
-
 .hide {
   display: none;
 }
@@ -113,7 +111,7 @@ body,
 textarea,
 input,
 select {
-  font-family: "Work Sans", sans-serif;
+  font-family: var(--font-family);
   font-size: var(--font-size);
   font-weight: 400;
   font-smooth: always;
@@ -147,6 +145,8 @@ select {
 }
 
 button {
+  font-family: var(--font-family);
+  font-weight: 400;
   font-size: var(--font-size);
   padding: var(--spacing) calc(2 * var(--spacing));
   text-decoration: none;
@@ -154,12 +154,16 @@ button {
   cursor: pointer;
 }
 
+h1.logo {
+  font-family: var(--font-family-logo);
+  font-size: 300%;
+}
+
 textarea#createDialog-description {
   height: 120px;
 }
 
 div#app-createDialog {
-  background: #c6c41d;
 }
 
 div#app-createDialog-action {
@@ -169,11 +173,9 @@ div#app-createDialog-action input {
 }
 
 div#app-todos-controls {
-  background: #c23499;
 }
 
 div#app-todos-items {
-  background: #206695;
 }
 
 /**
@@ -226,4 +228,16 @@ ol li.item button.item-done {
 
 ol li.item button.item-edit {
   grid-area: edit;
+}
+
+span.item-importance {
+  font-size: 200%;
+}
+
+button.item-edit {
+  font-size: 150%;
+}
+
+button.item-done {
+  font-size: 150%;
 }

@@ -3,21 +3,25 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Note App</title>
+  <title>tuuduu</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"
     integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous" defer></script>
   <script src="scripts/index.js" type="module"></script>
+  <script src="https://kit.fontawesome.com/bb3e28b1fd.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="styles/index.css">
-  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;800&family=Fira+Sans:wght@400;600&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
 
   <div id="app">
-    <h1>Todoist</h1>
+    <h1 class="logo">tuuduu</h1>
     <div id="app-actions" class="show">
-      <button id="app-actions-createNew" class="button">Create new</button>
-      <button id="app-actions-switchTheme" class="button">Switch Theme</button>
+      <button id="app-actions-createNew" class="button">Create new&emsp;<i class="fa-solid fa-plus"></i></button>
+      <button id="app-actions-switchTheme" class="button">Switch Theme&emsp;<i class="fa-solid fa-moon"></i></button>
     </div>
     <div id="app-createDialog" class="hide">
       <form action="javascript:void(0);" method="post">
@@ -47,20 +51,22 @@
           <input name="dueDate" id="createDialog-done" type="checkbox" value="true">
 
         </fieldset>
-        <div id="app-createDialog-action" class="padding-1">
-          <button id="app-createDialog-action-save" type="submit" class="button button-primary">Save</button>
-          <button id="app-createDialog-action-saveAndClose" type="button" class="button">Save & Close</button>
-          <button id="app-createDialog-action-overview" type="button" class="button">Overview</button>
+        <div id="app-createDialog-action">
+          <form action="javascript:void(0);" method="get">
+            <button id="app-createDialog-action-save" type="submit" class="button button-primary">Save</button>
+            <button id="app-createDialog-action-saveAndClose" type="button" class="button">Save & Close</button>
+            <button id="app-createDialog-action-overview" type="button" class="button">Overview</button>
+          </form>
         </div>
       </form>
     </div>
     <div id="app-todos" class="show">
-      <div id="app-todos-controls" class="padding-1">
-        <button class="button">Name</button>
-        <button class="button">By Due Date</button>
-        <button class="button">By Creation Date</button>
-        <button class="button">By Importance</button>
-        <button class="button">Filter Completed</button>
+      <div id="app-todos-controls">
+        <button type="button" class="button">Name&emsp;<i class="fa-solid fa-sort-down"></i></button>
+        <button type="button" class="button">By Due Date&emsp;<i class="fa-solid fa-sort"></i></i></button>
+        <button type="button" class="button">By Creation Date&emsp;<i class="fa-solid fa-sort"></i></button>
+        <button type="button" class="button">By Importance&emsp;<i class="fa-solid fa-sort"></i></button>
+        <button type="button" class="button">Filter Completed&emsp;<i class="fa-solid fa-toggle-off"></i></button>
       </div>
 
       <div id="app-todos-items">
@@ -68,26 +74,42 @@
           <li class="item">
             <h3>Title</h3>
             <p>Description</p>
-            <span class="item-importance">Importance</span>
+            <span class="item-importance"><i class="fa-solid fa-battery-empty"></i></span>
             <span class="item-dueDate">Due Date</span>
-            <button class="item-edit">Edit</button>
-            <button class="item-done">Mark as Done</button>
+            <button class="item-edit"><i class="fa-solid fa-pen"></i></button>
+            <button class="item-done"><i class="fa-solid fa-check"></i></button>
           </li>
           <li class="item">
             <h3>Title</h3>
             <p>Description</p>
-            <span class="item-importance">Importance</span>
+            <span class="item-importance"><i class="fa-solid fa-battery-quarter"></i></span>
             <span class="item-dueDate">Due Date</span>
-            <button class="item-edit">Edit</button>
-            <button class="item-done">Mark as Done</button>
+            <button class="item-edit"><i class="fa-solid fa-pen"></i></button>
+            <button class="item-done"><i class="fa-solid fa-check"></i></button>
           </li>
           <li class="item">
             <h3>Title</h3>
             <p>Description</p>
-            <span class="item-importance">Importance</span>
+            <span class="item-importance"><i class="fa-solid fa-battery-half"></i></span>
             <span class="item-dueDate">Due Date</span>
-            <button class="item-edit">Edit</button>
-            <button class="item-done">Mark as Done</button>
+            <button class="item-edit"><i class="fa-solid fa-pen"></i></button>
+            <button class="item-done"><i class="fa-solid fa-check"></i></button>
+          </li>
+          <li class="item">
+            <h3>Title</h3>
+            <p>Description</p>
+            <span class="item-importance"><i class="fa-solid fa-battery-three-quarters"></i></span>
+            <span class="item-dueDate">Due Date</span>
+            <button class="item-edit"><i class="fa-solid fa-pen"></i></button>
+            <button class="item-done"><i class="fa-solid fa-check"></i></button>
+          </li>
+          <li class="item">
+            <h3>Title</h3>
+            <p>Description</p>
+            <span class="item-importance"><i class=" fa-solid fa-battery-full"></i></span>
+            <span class="item-dueDate">Due Date</span>
+            <button class="item-edit"><i class="fa-solid fa-pen"></i></button>
+            <button class="item-done"><i class="fa-solid fa-check"></i></button>
           </li>
         </ol>
       </div>
