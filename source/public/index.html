@@ -1,15 +1,99 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
   <meta charset="UTF-8">
   <title>Note App</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js" integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"
+    integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous" defer></script>
   <script src="scripts/index.js" type="module"></script>
-
   <link rel="stylesheet" href="styles/index.css">
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap" rel="stylesheet" />
 </head>
+
 <body>
-<h1>Note App</h1>
+
+  <div id="app">
+    <h1>Todoist</h1>
+    <div id="app-actions" class="show">
+      <button id="app-actions-createNew" class="button">Create new</button>
+      <button id="app-actions-switchTheme" class="button">Switch Theme</button>
+    </div>
+    <div id="app-createDialog" class="hide">
+      <form action="javascript:void(0);" method="post">
+        <fieldset>
+
+          <label for="createDialog-title">Title</label>
+          <input name="title" id="createDialog-title" type="text" value="" placeholder="Titel des Todos" maxlength="255"
+            minlength="1" required>
+
+          <label for="createDialog-description">Description</label>
+          <textarea name="description" id="createDialog-description" minlength="10"
+            placeholder="Beschreibung was gemacht werden muss."></textarea>
+
+          <label for="createDialog-importance">Importance</label>
+          <select name="importance" id="createDialog-importance">
+            <option value="1">Whenever</option>
+            <option value="2">Low</option>
+            <option value="3" selected>Normal</option>
+            <option value="4">High</option>
+            <option value="5">ASAP</option>
+          </select>
+
+          <label for="createDialog-dueDate">Due date</label>
+          <input name="dueDate" id="createDialog-dueDate" type="date">
+
+          <label for="createDialog-done">Mark as done</label>
+          <input name="dueDate" id="createDialog-done" type="checkbox" value="true">
+
+        </fieldset>
+        <div id="app-createDialog-action" class="padding-1">
+          <button id="app-createDialog-action-save" type="submit" class="button button-primary">Save</button>
+          <button id="app-createDialog-action-saveAndClose" type="button" class="button">Save & Close</button>
+          <button id="app-createDialog-action-overview" type="button" class="button">Overview</button>
+        </div>
+      </form>
+    </div>
+    <div id="app-todos" class="show">
+      <div id="app-todos-controls" class="padding-1">
+        <button class="button">Name</button>
+        <button class="button">By Due Date</button>
+        <button class="button">By Creation Date</button>
+        <button class="button">By Importance</button>
+        <button class="button">Filter Completed</button>
+      </div>
+
+      <div id="app-todos-items">
+        <ol>
+          <li class="item">
+            <h3>Title</h3>
+            <p>Description</p>
+            <span class="item-importance">Importance</span>
+            <span class="item-dueDate">Due Date</span>
+            <button class="item-edit">Edit</button>
+            <button class="item-done">Mark as Done</button>
+          </li>
+          <li class="item">
+            <h3>Title</h3>
+            <p>Description</p>
+            <span class="item-importance">Importance</span>
+            <span class="item-dueDate">Due Date</span>
+            <button class="item-edit">Edit</button>
+            <button class="item-done">Mark as Done</button>
+          </li>
+          <li class="item">
+            <h3>Title</h3>
+            <p>Description</p>
+            <span class="item-importance">Importance</span>
+            <span class="item-dueDate">Due Date</span>
+            <button class="item-edit">Edit</button>
+            <button class="item-done">Mark as Done</button>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
 
 </body>
+
 </html>

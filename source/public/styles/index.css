@@ -1,3 +1,229 @@
+:root {
+  --font-size: 16px;
+  --spacing: 10px;
+
+  --lighten-percentage: 20%;
+  --darken-percentage: 20%;
+
+  --body-color: #fff;
+  --font-color: #000;
+
+  --default-color-h: 0;
+  --default-color-s: 0%;
+  --default-color-l: 50%;
+
+  --default-color: hsl(
+    var(--default-color-h),
+    var(--default-color-s),
+    var(--default-color-l)
+  );
+  --default-color-dark: hsl(
+    var(--default-color-h),
+    var(--default-color-s),
+    calc(var(--default-color-l) - var(--darken-percentage))
+  );
+  --default-color-light: hsl(
+    var(--default-color-h),
+    var(--default-color-s),
+    calc(var(--default-color-l) + var(--lighten-percentage))
+  );
+
+  --primary-color-h: 0;
+  --primary-color-s: 100%;
+  --primary-color-l: 50%;
+  --primary-color: hsl(
+    var(--primary-color-h),
+    var(--primary-color-s),
+    var(--primary-color-l)
+  );
+  --primary-color-dark: hsl(
+    var(--primary-color-h),
+    var(--primary-color-s),
+    calc(var(--primary-color-l) - var(--darken-percentage))
+  );
+  --primary-color-light: hsl(
+    var(--primary-color-h),
+    var(--primary-color-s),
+    calc(var(--primary-color-l) + var(--lighten-percentage))
+  );
+}
+
+body.dark {
+  --body-color: #000;
+  --font-color: #fff;
+}
+
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: calc(3 * var(--spacing));
+  background-color: var(--body-color);
+  color: var(--font-color);
+}
+
+.padding-1 {
+  padding: var(--spacing);
+}
+.padding-2 {
+  padding: calc(2 * var(--spacing));
+}
+.padding-3 {
+  padding: calc(3 * var(--spacing));
+}
+.margin-1 {
+  margin: var(--spacing);
+}
+.margin-2 {
+  margin: calc(2 * var(--spacing));
+}
+.margin-3 {
+  margin: calc(3 * var(--spacing));
+}
+
+.button {
+  background: var(--default-color);
+  border-radius: calc(var(--spacing) / 2);
+  border-color: var(--default-color-dark);
+}
+.button:hover {
+  background: var(--default-color-light);
+}
+.button-primary {
+  background: var(--primary-color);
+  border-color: var(--primary-color-dark);
+}
+.button-primary:hover {
+  background: var(--primary-color-light);
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+/* 
+ * FONTS
+ */
+body,
+textarea,
+input,
+select {
+  font-family: "Work Sans", sans-serif;
+  font-size: var(--font-size);
+  font-weight: 400;
+  font-smooth: always;
+}
+
+/**
+ * FORM
+ */
+
+label {
+  padding: var(--spacing) 0;
+  border: 2px solid trans;
+  border-color: transparent;
+}
+
+form fieldset {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  gap: var(--spacing);
+  padding: var(--spacing);
+  margin: 0;
+  border: none;
+}
+
+textarea,
+input,
+select {
+  border: 2px solid black;
+  border-radius: calc(var(--spacing) / 2);
+  padding: var(--spacing);
+}
+
+button {
+  font-size: var(--font-size);
+  padding: var(--spacing) calc(2 * var(--spacing));
+  text-decoration: none;
+  border-style: solid;
+  cursor: pointer;
+}
+
+textarea#createDialog-description {
+  height: 120px;
+}
+
+div#app-createDialog {
+  background: #c6c41d;
+}
+
+div#app-createDialog-action {
+}
+
+div#app-createDialog-action input {
+}
+
+div#app-todos-controls {
+  background: #c23499;
+}
+
+div#app-todos-items {
+  background: #206695;
+}
+
+/**
+ * ITEMS
+ */
+div#app-todos-item {
+}
+
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+ol li.item {
+  display: grid;
+  grid-template-rows: 1fr 2fr;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-areas:
+    "dueDate title edit"
+    "importance description done";
+  border-bottom: 1px solid black;
+  gap: var(--spacing);
+  padding: var(--spacing);
+}
+
+ol li.item h3 {
+  grid-area: title;
+  margin: 0;
+  padding: 0;
+}
+
+ol li.item p {
+  grid-area: description;
+  margin: 0;
+  padding: 0;
+}
+
+ol li.item span.item-importance {
+  grid-area: importance;
+}
+
+ol li.item span.item-dueDate {
+  grid-area: dueDate;
+}
+
+ol li.item button.item-done {
+  grid-area: done;
+}
+
+ol li.item button.item-edit {
+  grid-area: edit;
 }
