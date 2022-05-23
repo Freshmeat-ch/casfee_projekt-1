@@ -1,9 +1,98 @@
-const actions = document.querySelector('div#app-actions');
-const createDialog = document.querySelector('div#app-createDialog');
-const todos = document.querySelector('div#app-todos');
+const app = document.querySelector('div#app');
+const appActions = document.querySelector('div#app-actions');
+const appCreateDialog = document.querySelector('div#app-createDialog');
+const appCreateDialogForm = document.querySelector('form#app-createDialog-form');
+const appTodos = document.querySelector('div#app-todos');
+const appTodosItems = document.querySelector('div#app-todos-items');
+const storage = localStorage;
 
-function toggleVisibilty(element) {
-    element.classList.toggle('hide');
+function changeAction(action) {
+    app.dataset.action = action;
+}
+
+function updateId(id) {
+    appCreateDialogForm.querySelector('input[name=id]').value = id;
+}
+
+function clearForm() {
+    updateId('');
+    appCreateDialogForm.reset();
+}
+
+function createId() {
+  function randomChars(){
+    return Math.random().toString(16).slice(-4);
+  }
+  return `${randomChars() + randomChars() + randomChars() }`;
+}
+
+
+function upsertTask(data) {
+
+    const task = data;
+    let todos = JSON.parse(storage.getItem('todos'));
+    let updateKey = null;
+
+    if (todos === null) todos = [];
+    if (task.id.length === 0) {
+        const id = createId();
+        updateId(id);
+        task.id = id;
+    }
+
+    todos.forEach((storedTask, key) => {
+        if (storedTask.id === task.id) {
+            updateKey = key;
+        }
+    });
+
+    if (updateKey === null) {
+        todos.push(task);
+    } else {
+        todos[updateKey] = task;
+    }
+
+    storage.setItem('todos', JSON.stringify(todos));
+
+}
+
+function renderTasks() {
+
+    let html = `<ol>`;
+    const todos = JSON.parse(storage.getItem('todos'));
+
+    todos.forEach((task) => {
+        let importanceIcon = null;
+        switch (task.importance) {
+            case "1":
+                importanceIcon = 'fa-battery-full';
+                break;
+            case "2":
+                importanceIcon = 'fa-battery-three-quarters';
+                break;
+            case "4":
+                importanceIcon = 'fa-battery-quarter';
+                break;
+            case "5":
+                importanceIcon = 'fa-battery-empty';
+                break;
+            default:
+                importanceIcon = 'fa-battery-half';
+
+        }
+        html += `<li class="item">
+            <h3>${task.title}</h3>
+            <p>${task.description}</p>
+            <span class="item-importance"><i class="fa-solid ${importanceIcon}"></i></span>
+            <span class="item-dueDate">${task.dueDate}</span>
+            <button class="item-edit"><i class="fa-solid fa-pen"></i></button>
+            <button class="item-done"><i class="fa-solid fa-check"></i></button>
+        `;
+    });
+    
+    html += `</ol>`;
+    appTodosItems.innerHTML = html;
+
 }
 
 // button: theme switcher
@@ -13,14 +102,31 @@ document.querySelector('button#app-actions-switchTheme').addEventListener('click
 
 // button: create new
 document.querySelector('button#app-actions-createNew').addEventListener('click', () => {
-    toggleVisibilty(actions);
-    toggleVisibilty(createDialog);
-    toggleVisibilty(todos);
+    changeAction('createNew');
 });
 
 // button: overview
 document.querySelector('button#app-createDialog-action-overview').addEventListener('click', () => {
-    toggleVisibilty(actions);
-    toggleVisibilty(createDialog);
-    toggleVisibilty(todos);
+    changeAction('list');
+});
+
+// form submit
+appCreateDialogForm.addEventListener('submit', (event) => {
+    let task = new FormData(event.target);
+        task = Object.fromEntries(task);
+    switch (event.submitter.id) {
+        case 'app-createDialog-action-saveAndClose':
+            upsertTask(task)
+            clearForm();
+            changeAction('list');
+            renderTasks();
+            break;
+        default:
+            upsertTask(task);
+            renderTasks();
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    renderTasks();
 });

@@ -17,14 +17,15 @@
 
 <body>
 
-  <div id="app">
+  <div id="app" data-action="list">
     <h1 class="logo">tuuduu</h1>
-    <div id="app-actions" class="show">
+    <div id="app-actions">
       <button id="app-actions-createNew" class="button">Create new&emsp;<i class="fa-solid fa-plus"></i></button>
       <button id="app-actions-switchTheme" class="button">Switch Theme&emsp;<i class="fa-solid fa-moon"></i></button>
     </div>
-    <div id="app-createDialog" class="hide">
-      <form action="javascript:void(0);" method="post">
+    <div id="app-createDialog">
+      <form id="app-createDialog-form" action="javascript:void(0);" method="post">
+        <input name="id" type="hidden" value="">
         <fieldset>
 
           <label for="createDialog-title">Title</label>
@@ -48,19 +49,17 @@
           <input name="dueDate" id="createDialog-dueDate" type="date">
 
           <label for="createDialog-done">Mark as done</label>
-          <input name="dueDate" id="createDialog-done" type="checkbox" value="true">
+          <input name="done" id="createDialog-done" type="checkbox" value="true">
 
         </fieldset>
         <div id="app-createDialog-action">
-          <form action="javascript:void(0);" method="get">
-            <button id="app-createDialog-action-save" type="submit" class="button button-primary">Save</button>
-            <button id="app-createDialog-action-saveAndClose" type="button" class="button">Save & Close</button>
-            <button id="app-createDialog-action-overview" type="button" class="button">Overview</button>
-          </form>
+          <button id="app-createDialog-action-save" type="submit" class="button button-primary">Save</button>
+          <button id="app-createDialog-action-saveAndClose" type="submit" class="button">Save & Close</button>
+          <button id="app-createDialog-action-overview" type="button" class="button">Overview</button>
         </div>
       </form>
     </div>
-    <div id="app-todos" class="show">
+    <div id="app-todos">
       <div id="app-todos-controls">
         <button type="button" class="button">Name&emsp;<i class="fa-solid fa-sort-down"></i></button>
         <button type="button" class="button">By Due Date&emsp;<i class="fa-solid fa-sort"></i></i></button>
@@ -70,48 +69,7 @@
       </div>
 
       <div id="app-todos-items">
-        <ol>
-          <li class="item">
-            <h3>Title</h3>
-            <p>Description</p>
-            <span class="item-importance"><i class="fa-solid fa-battery-empty"></i></span>
-            <span class="item-dueDate">Due Date</span>
-            <button class="item-edit"><i class="fa-solid fa-pen"></i></button>
-            <button class="item-done"><i class="fa-solid fa-check"></i></button>
-          </li>
-          <li class="item">
-            <h3>Title</h3>
-            <p>Description</p>
-            <span class="item-importance"><i class="fa-solid fa-battery-quarter"></i></span>
-            <span class="item-dueDate">Due Date</span>
-            <button class="item-edit"><i class="fa-solid fa-pen"></i></button>
-            <button class="item-done"><i class="fa-solid fa-check"></i></button>
-          </li>
-          <li class="item">
-            <h3>Title</h3>
-            <p>Description</p>
-            <span class="item-importance"><i class="fa-solid fa-battery-half"></i></span>
-            <span class="item-dueDate">Due Date</span>
-            <button class="item-edit"><i class="fa-solid fa-pen"></i></button>
-            <button class="item-done"><i class="fa-solid fa-check"></i></button>
-          </li>
-          <li class="item">
-            <h3>Title</h3>
-            <p>Description</p>
-            <span class="item-importance"><i class="fa-solid fa-battery-three-quarters"></i></span>
-            <span class="item-dueDate">Due Date</span>
-            <button class="item-edit"><i class="fa-solid fa-pen"></i></button>
-            <button class="item-done"><i class="fa-solid fa-check"></i></button>
-          </li>
-          <li class="item">
-            <h3>Title</h3>
-            <p>Description</p>
-            <span class="item-importance"><i class=" fa-solid fa-battery-full"></i></span>
-            <span class="item-dueDate">Due Date</span>
-            <button class="item-edit"><i class="fa-solid fa-pen"></i></button>
-            <button class="item-done"><i class="fa-solid fa-check"></i></button>
-          </li>
-        </ol>
+        <!-- no items -->
       </div>
     </div>
   </div>

@@ -4,49 +4,152 @@
   --font-size: 18px;
   --spacing: 10px;
 
-  --lighten-percentage: 20%;
-  --darken-percentage: 20%;
+  --light-percentage: 20%;
+  --dark-percentage: 20%;
+  --ultralight-percentage: 45%;
+  --ultradark-percentage: 45%;
 
-  --body-color: #fff;
-  --font-color: #000;
+  --body-color: rgb(255, 255, 255);
+  --font-color: rgb(0, 0, 0);
 
-  --default-color-h: 0;
-  --default-color-s: 0%;
-  --default-color-l: 50%;
+  --color-default-h: 0;
+  --color-default-s: 0%;
+  --color-default-l: 50%;
 
-  --default-color: hsl(
-    var(--default-color-h),
-    var(--default-color-s),
-    var(--default-color-l)
+  --color-default: hsl(
+    var(--color-default-h),
+    var(--color-default-s),
+    var(--color-default-l)
   );
-  --default-color-dark: hsl(
-    var(--default-color-h),
-    var(--default-color-s),
-    calc(var(--default-color-l) - var(--darken-percentage))
+  --color-default-dark: hsl(
+    var(--color-default-h),
+    var(--color-default-s),
+    calc(var(--color-default-l) - var(--dark-percentage))
   );
-  --default-color-light: hsl(
-    var(--default-color-h),
-    var(--default-color-s),
-    calc(var(--default-color-l) + var(--lighten-percentage))
+  --color-default-light: hsl(
+    var(--color-default-h),
+    var(--color-default-s),
+    calc(var(--color-default-l) + var(--light-percentage))
   );
 
-  --primary-color-h: 0;
-  --primary-color-s: 100%;
-  --primary-color-l: 50%;
-  --primary-color: hsl(
-    var(--primary-color-h),
-    var(--primary-color-s),
-    var(--primary-color-l)
+  --color-primary-h: 0;
+  --color-primary-s: 100%;
+  --color-primary-l: 50%;
+  --color-primary: hsl(
+    var(--color-primary-h),
+    var(--color-primary-s),
+    var(--color-primary-l)
   );
-  --primary-color-dark: hsl(
-    var(--primary-color-h),
-    var(--primary-color-s),
-    calc(var(--primary-color-l) - var(--darken-percentage))
+  --color-primary-dark: hsl(
+    var(--color-primary-h),
+    var(--color-primary-s),
+    calc(var(--color-primary-l) - var(--dark-percentage))
   );
-  --primary-color-light: hsl(
-    var(--primary-color-h),
-    var(--primary-color-s),
-    calc(var(--primary-color-l) + var(--lighten-percentage))
+  --color-primary-light: hsl(
+    var(--color-primary-h),
+    var(--color-primary-s),
+    calc(var(--color-primary-l) + var(--light-percentage))
+  );
+
+  --color-black-h: 0;
+  --color-black-s: 0%;
+  --color-black-l: 0%;
+  --color-black: hsl(
+    var(--color-black-h),
+    var(--color-black-s),
+    var(--color-black-l)
+  );
+  --color-black-dark: hsl(
+    var(--color-black-h),
+    var(--color-black-s),
+    calc(var(--color-black-l) - var(--dark-percentage))
+  );
+  --color-black-light: hsl(
+    var(--color-black-h),
+    var(--color-black-s),
+    calc(var(--color-black-l) + var(--light-percentage))
+  );
+
+  --color-green-h: 100;
+  --color-green-s: 50%;
+  --color-green-l: 50%;
+  --color-green: hsl(
+    var(--color-green-h),
+    var(--color-green-s),
+    var(--color-green-l)
+  );
+  --color-green-dark: hsl(
+    var(--color-green-h),
+    var(--color-green-s),
+    calc(var(--color-green-l) - var(--dark-percentage))
+  );
+  --color-green-light: hsl(
+    var(--color-green-h),
+    var(--color-green-s),
+    calc(var(--color-green-l) + var(--light-percentage))
+  );
+
+  --color-orange-h: 25;
+  --color-orange-s: 100%;
+  --color-orange-l: 50%;
+  --color-orange: hsl(
+    var(--color-orange-h),
+    var(--color-orange-s),
+    var(--color-orange-l)
+  );
+  --color-orange-dark: hsl(
+    var(--color-orange-h),
+    var(--color-orange-s),
+    calc(var(--color-orange-l) - var(--dark-percentage))
+  );
+  --color-orange-light: hsl(
+    var(--color-orange-h),
+    var(--color-orange-s),
+    calc(var(--color-orange-l) + var(--light-percentage))
+  );
+
+  --color-red-h: 0;
+  --color-red-s: 100%;
+  --color-red-l: 50%;
+  --color-red: hsl(var(--color-red-h), var(--color-red-s), var(--color-red-l));
+  --color-red-dark: hsl(
+    var(--color-red-h),
+    var(--color-red-s),
+    calc(var(--color-red-l) - var(--dark-percentage))
+  );
+  --color-red-light: hsl(
+    var(--color-red-h),
+    var(--color-red-s),
+    calc(var(--color-red-l) + var(--light-percentage))
+  );
+
+  --color-grey-h: 360;
+  --color-grey-s: 0%;
+  --color-grey-l: 50%;
+  --color-grey: hsl(
+    var(--color-grey-h),
+    var(--color-grey-s),
+    var(--color-grey-l)
+  );
+  --color-grey-dark: hsl(
+    var(--color-grey-h),
+    var(--color-grey-s),
+    calc(var(--color-grey-l) - var(--dark-percentage))
+  );
+  --color-grey-ultradark: hsl(
+    var(--color-grey-h),
+    var(--color-grey-s),
+    calc(var(--color-grey-l) - var(--ultradark-percentage))
+  );
+  --color-grey-light: hsl(
+    var(--color-grey-h),
+    var(--color-grey-s),
+    calc(var(--color-grey-l) + var(--light-percentage))
+  );
+  --color-grey-ultralight: hsl(
+    var(--color-grey-h),
+    var(--color-grey-s),
+    calc(var(--color-grey-l) + var(--ultralight-percentage))
   );
 }
 
@@ -86,19 +189,19 @@ body {
 }
 
 .button {
-  background: var(--default-color);
+  background: var(--color-default);
   border-radius: calc(var(--spacing) / 2);
-  border-color: var(--default-color-dark);
+  border-color: var(--color-default-dark);
 }
 .button:hover {
-  background: var(--default-color-light);
+  background: var(--color-default-light);
 }
 .button-primary {
-  background: var(--primary-color);
-  border-color: var(--primary-color-dark);
+  background: var(--color-primary);
+  border-color: var(--color-primary-dark);
 }
 .button-primary:hover {
-  background: var(--primary-color-light);
+  background: var(--color-primary-light);
 }
 
 .hide {
@@ -120,7 +223,6 @@ select {
 /**
  * FORM
  */
-
 label {
   padding: var(--spacing) 0;
   border: 2px solid trans;
@@ -179,6 +281,27 @@ div#app-todos-items {
 }
 
 /**
+ * APP STATES
+ */
+div#app[data-action="list"] div#app-actions,
+div#app[data-action="list"] div#app-actions,
+div#app[data-action="list"] div#app-todos {
+  display: block;
+}
+div#app[data-action="list"] div#app-createDialog {
+  display: none;
+}
+
+div#app[data-action="createNew"] div#app-actions,
+div#app[data-action="createNew"] div#app-actions,
+div#app[data-action="createNew"] div#app-todos {
+  display: none;
+}
+div#app[data-action="createNew"] div#app-createDialog {
+  display: block;
+}
+
+/**
  * ITEMS
  */
 div#app-todos-item {
@@ -190,10 +313,14 @@ ol {
   padding: 0;
 }
 
+ol li:hover {
+  background: var(--color-grey-ultralight);
+}
+
 ol li.item {
   display: grid;
-  grid-template-rows: 1fr 2fr;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 10fr 1fr;
   grid-template-areas:
     "dueDate title edit"
     "importance description done";
@@ -236,8 +363,37 @@ span.item-importance {
 
 button.item-edit {
   font-size: 150%;
+  background: none;
+  border: none;
+  color: var(--color-grey);
+}
+
+button.item-edit:hover {
+  color: var(--color-black);
 }
 
 button.item-done {
   font-size: 150%;
+  background: none;
+  border: none;
+  color: var(--color-grey);
+}
+button.item-done:hover {
+  color: var(--color-green);
+}
+
+span.item-importance i.fa-battery-empty {
+  color: var(--color-red);
+}
+
+span.item-importance i.fa-battery-quarter {
+  color: var(--color-orange);
+}
+
+span.item-importance i.fa-battery-three-quarters {
+  color: var(--color-grey);
+}
+
+span.item-importance i.fa-battery-full {
+  color: var(--color-grey-light);
 }
