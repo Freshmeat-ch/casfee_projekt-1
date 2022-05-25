@@ -26,7 +26,6 @@ function createId() {
   return `${randomChars() + randomChars() + randomChars() }`;
 }
 
-
 function upsertTask(data) {
 
     const task = data;
@@ -62,28 +61,10 @@ function renderTasks() {
     const todos = JSON.parse(storage.getItem('todos'));
 
     todos.forEach((task) => {
-        let importanceIcon = null;
-        switch (task.importance) {
-            case "1":
-                importanceIcon = 'fa-battery-full';
-                break;
-            case "2":
-                importanceIcon = 'fa-battery-three-quarters';
-                break;
-            case "4":
-                importanceIcon = 'fa-battery-quarter';
-                break;
-            case "5":
-                importanceIcon = 'fa-battery-empty';
-                break;
-            default:
-                importanceIcon = 'fa-battery-half';
-
-        }
         html += `<li class="item">
             <h3>${task.title}</h3>
             <p>${task.description}</p>
-            <span class="item-importance"><i class="fa-solid ${importanceIcon}"></i></span>
+            <span class="item-importance"><span class="icon icon-importance-${task.importance}"></span></span>
             <span class="item-dueDate">${task.dueDate}</span>
             <button class="item-edit"><i class="fa-solid fa-pen"></i></button>
             <button class="item-done"><i class="fa-solid fa-check"></i></button>

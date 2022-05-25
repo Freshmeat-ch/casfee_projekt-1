@@ -20,8 +20,9 @@
   <div id="app" data-action="list">
     <h1 class="logo">tuuduu</h1>
     <div id="app-actions">
-      <button id="app-actions-createNew" class="button">Create new&emsp;<i class="fa-solid fa-plus"></i></button>
-      <button id="app-actions-switchTheme" class="button">Switch Theme&emsp;<i class="fa-solid fa-moon"></i></button>
+      <button id="app-actions-createNew" class="button">Create new&emsp;<span class="icon icon-plus"></span></button>
+      <button id="app-actions-switchTheme" class="button">Switch Theme&emsp;<span
+          class="icon icon-moon"></span></button>
     </div>
     <div id="app-createDialog">
       <form id="app-createDialog-form" action="javascript:void(0);" method="post">
@@ -61,11 +62,16 @@
     </div>
     <div id="app-todos">
       <div id="app-todos-controls">
-        <button type="button" class="button">Name&emsp;<i class="fa-solid fa-sort-down"></i></button>
-        <button type="button" class="button">By Due Date&emsp;<i class="fa-solid fa-sort"></i></i></button>
-        <button type="button" class="button">By Creation Date&emsp;<i class="fa-solid fa-sort"></i></button>
-        <button type="button" class="button">By Importance&emsp;<i class="fa-solid fa-sort"></i></button>
-        <button type="button" class="button">Filter Completed&emsp;<i class="fa-solid fa-toggle-off"></i></button>
+        <button id="sortByName" type="button" class="button" data-sort="">By Name&emsp;<span
+            class="icon icon-sort"></span></button>
+        <button id="sortByDueDate" type="button" class="button" data-sort="">By Due Date&emsp;<span
+            class="icon icon-sort"></span></button>
+        <button id="sortByCreationDate" type="button" class="button" data-sort="">By Creation Date&emsp;<span
+            class="icon icon-sort"></span></button>
+        <button id="sortByImportance" type="button" class="button" data-sort="">By Importance&emsp;<span
+            class="icon icon-sort"></span></button>
+        <button id="filterByCompletion" type="button" class="button" data-filter="disable">Filter Completed&emsp;<span
+            class="icon icon-filter-off"></span></button>
       </div>
 
       <div id="app-todos-items">
