@@ -6,6 +6,23 @@ const appTodos = document.querySelector('div#app-todos');
 const appTodosItems = document.querySelector('div#app-todos-items');
 const storage = localStorage;
 
+const todoTemplate = (task) => {
+    const dueDate = new Date(task.dueDate);
+    const day = String(dueDate.getDate());
+    const month = String(dueDate.getMonth() + 1);
+    const year = String(dueDate.getFullYear());
+    return `
+        <li class="item">
+            <h3>${task.title} (${task.createDate})</h3>
+            <p>${task.description}</p>
+            <span class="item-importance"><span class="icon icon-importance-${task.importance}"></span></span>
+            <span class="item-dueDate">${day.padStart(2, '0')}.${month.padStart(2, '0')}.${year}</span>
+            <button class="item-edit"><i class="fa-solid fa-pen"></i></button>
+            <button class="item-done"><i class="fa-solid fa-check"></i></button>
+        </li>
+    `;
+}
+
 function changeAction(action) {
     app.dataset.action = action;
 }
@@ -38,6 +55,10 @@ function upsertTask(data) {
         updateId(id);
         task.id = id;
     }
+    if (task.createDate.length === 0) {
+        task.createDate = new Date();
+    }
+    task.dueDate = new Date(task.dueDate);
 
     todos.forEach((storedTask, key) => {
         if (storedTask.id === task.id) {
@@ -61,14 +82,7 @@ function renderTasks() {
     const todos = JSON.parse(storage.getItem('todos'));
 
     todos.forEach((task) => {
-        html += `<li class="item">
-            <h3>${task.title}</h3>
-            <p>${task.description}</p>
-            <span class="item-importance"><span class="icon icon-importance-${task.importance}"></span></span>
-            <span class="item-dueDate">${task.dueDate}</span>
-            <button class="item-edit"><i class="fa-solid fa-pen"></i></button>
-            <button class="item-done"><i class="fa-solid fa-check"></i></button>
-        `;
+        html += todoTemplate(task);
     });
     
     html += `</ol>`;
