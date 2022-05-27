@@ -6,7 +6,7 @@
   <title>tuuduu</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"
     integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous" defer></script>
-  <script src="scripts/index.js" type="module"></script>
+  <script src="scripts/controllers/todo-controller.js" type="module" defer></script>
   <script src="https://kit.fontawesome.com/bb3e28b1fd.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="styles/index.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,26 +20,24 @@
   <div id="app" data-action="list">
     <h1 class="logo">tuuduu</h1>
     <div id="app-actions">
-      <button id="app-actions-createNew" class="button">Create new&emsp;<span class="icon icon-plus"></span></button>
+      <button id="app-actions-form" class="button">Create new&emsp;<span class="icon icon-plus"></span></button>
       <button id="app-actions-switchTheme" class="button">Switch Theme&emsp;<span
           class="icon icon-moon"></span></button>
     </div>
-    <div id="app-createDialog">
-      <form id="app-createDialog-form" action="javascript:void(0);" method="post">
-        <input name="id" type="hidden" value="">
-        <input name="createDate" type="hidden" value="">
+    <div id="app-form">
+      <form action="javascript:void(0);" method="post" data-todo-id="">
         <fieldset>
 
-          <label for="createDialog-title">Title</label>
-          <input name="title" id="createDialog-title" type="text" value="" placeholder="Titel des Todos" maxlength="255"
+          <label for="form-title">Title</label>
+          <input name="title" id="form-title" type="text" value="" placeholder="Titel des Todos" maxlength="255"
             minlength="1" required>
 
-          <label for="createDialog-description">Description</label>
-          <textarea name="description" id="createDialog-description" minlength="10"
+          <label for="form-description">Description</label>
+          <textarea name="description" id="form-description" minlength="10"
             placeholder="Beschreibung was gemacht werden muss."></textarea>
 
-          <label for="createDialog-importance">Importance</label>
-          <select name="importance" id="createDialog-importance">
+          <label for="form-importance">Importance</label>
+          <select name="importance" id="form-importance">
             <option value="1">Whenever</option>
             <option value="2">Low</option>
             <option value="3" selected>Normal</option>
@@ -47,22 +45,22 @@
             <option value="5">ASAP</option>
           </select>
 
-          <label for="createDialog-dueDate">Due date</label>
-          <input name="dueDate" id="createDialog-dueDate" type="date">
+          <label for="form-dueDate">Due date</label>
+          <input name="dueDate" id="form-dueDate" type="date">
 
-          <label for="createDialog-done">Mark as done</label>
-          <input name="done" id="createDialog-done" type="checkbox" value="true">
+          <label for="form-done">Mark as done</label>
+          <input name="done" id="form-done" type="checkbox" value="true">
 
         </fieldset>
-        <div id="app-createDialog-action">
-          <button id="app-createDialog-action-save" type="submit" class="button button-primary">Save</button>
-          <button id="app-createDialog-action-saveAndClose" type="submit" class="button">Save & Close</button>
-          <button id="app-createDialog-action-overview" type="button" class="button">Overview</button>
+        <div id="app-form-action">
+          <button id="app-form-action-save" type="submit" class="button button-primary">Save</button>
+          <button id="app-form-action-saveAndClose" type="submit" class="button">Save & Close</button>
+          <button id="app-form-action-list" type="button" class="button">Overview</button>
         </div>
       </form>
     </div>
-    <div id="app-todos">
-      <div id="app-todos-controls">
+    <div id="app-list">
+      <div id="app-list-controls">
         <button id="sortByName" type="button" class="button" data-sort="">By Name&emsp;<span
             class="icon icon-sort"></span></button>
         <button id="sortByDueDate" type="button" class="button" data-sort="">By Due Date&emsp;<span
@@ -75,8 +73,10 @@
             class="icon icon-filter-off"></span></button>
       </div>
 
-      <div id="app-todos-items">
-        <!-- no items -->
+      <div id="app-list-items">
+        <ol>
+          <li>No Todos</li>
+        </ol>
       </div>
     </div>
   </div>

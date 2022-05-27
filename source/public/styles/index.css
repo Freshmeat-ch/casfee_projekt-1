@@ -261,87 +261,95 @@ h1.logo {
   font-size: 300%;
 }
 
-textarea#createDialog-description {
+textarea#form-description {
   height: 120px;
 }
 
-div#app-createDialog {
+div#app-form {
 }
 
-div#app-createDialog-action {
+div#app-form-action {
 }
 
-div#app-createDialog-action input {
+div#app-form-action input {
 }
 
-div#app-todos-controls {
+div#app-list-controls {
 }
 
-div#app-todos-items {
+div#app-list-items {
 }
 
 /**
  * ICONS
  */
-span.icon::before {
+.icon::before {
   font: var(--fa-font-solid);
   display: inline-block;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
 }
 
-span.icon-plus::before {
+.icon-plus::before {
   content: "\2b";
 }
 
-span.icon-moon::before {
+.icon-moon::before {
   content: "\f186";
 }
 
-span.icon-sun::before {
+.icon-sun::before {
   content: "\f185";
 }
 
-span.icon-sort::before {
+.icon-sort::before {
   content: "\f0dc";
 }
 
-span.icon-sort-down::before {
+.icon-sort-down::before {
   content: "\f0dd";
 }
 
-span.icon-sort-up::before {
+.icon-sort-up::before {
   content: "\f0de";
 }
 
-span.icon-filter-on::before {
+.icon-filter-on::before {
   content: "\f205";
 }
 
-span.icon-filter-off::before {
+.icon-filter-off::before {
   content: "\f204";
 }
 
-span.icon-importance-5::before {
+.icon-edit::before {
+  content: "\f304";
+}
+
+.icon-done::before {
+  content: "\f00c";
+}
+
+.icon-importance-5::before {
   color: var(--color-red);
   content: "\f244";
 }
 
-span.icon-importance-4::before {
+.icon-importance-4::before {
   color: var(--color-orange);
   content: "\f243";
 }
 
-span.icon-importance-3::before {
+.icon-importance-3::before {
   content: "\f242";
 }
 
-span.icon-importance-2::before {
+.icon-importance-2::before {
   color: var(--color-grey);
   content: "\f241";
 }
 
-span.icon-importance-1::before {
+.icon-importance-1::before {
   color: var(--color-grey-light);
   content: "\f240";
 }
@@ -356,19 +364,19 @@ body.dark button#app-actions-switchTheme span::before {
 /** 
  * SORTINGS & FILTERS
  */
-div#app-todos-controls button[data-sort="up"] span::before {
+div#app-list-controls button[data-sort="up"] span::before {
   content: "\f0de";
 }
 
-div#app-todos-controls button[data-sort="down"] span::before {
+div#app-list-controls button[data-sort="down"] span::before {
   content: "\f0dd";
 }
 
-div#app-todos-controls button[data-filter="enable"] span::before {
+div#app-list-controls button[data-filter="enable"] span::before {
   content: "\f205";
 }
 
-div#app-todos-controls button[data-filter="disable"] span::before {
+div#app-list-controls button[data-filter="disable"] span::before {
   content: "\f204";
 }
 
@@ -376,29 +384,26 @@ div#app-todos-controls button[data-filter="disable"] span::before {
  * APP STATES
  */
 div#app[data-action="list"] div#app-actions,
-div#app[data-action="list"] div#app-todos {
+div#app[data-action="list"] div#app-list {
   display: block;
 }
 
-div#app[data-action="list"] div#app-createDialog {
+div#app[data-action="list"] div#app-form {
   display: none;
 }
 
-div#app[data-action="createNew"] div#app-actions,
-div#app[data-action="createNew"] div#app-todos {
+div#app[data-action="form"] div#app-actions,
+div#app[data-action="form"] div#app-list {
   display: none;
 }
 
-div#app[data-action="createNew"] div#app-createDialog {
+div#app[data-action="form"] div#app-form {
   display: block;
 }
 
 /**
  * ITEMS
  */
-div#app-todos-item {
-}
-
 ol {
   list-style: none;
   margin: 0;
