@@ -1,6 +1,8 @@
 import { todoService } from "../services/todo-service.js";
+import Utils from "../utils.js";
 
 // TODO: build filters and sortings
+// TODO: build the done function on the list view (maybe with a dialog?)
 // TODO: (optional) make a delete function
 
 export default class TodoController {
@@ -15,6 +17,9 @@ export default class TodoController {
         // forms
         this.form = document.querySelector('div#app-form > form');
 
+        // inputs
+        this.inputDueDate = document.querySelector('input#form-dueDate');
+
         // buttons
         this.buttonSwitchTheme = document.querySelector('button#app-actions-switchTheme');
         this.buttonForm = document.querySelector('button#app-actions-form');
@@ -24,6 +29,11 @@ export default class TodoController {
 
     initEventHandlers() {
 
+        // set the min date for the due date input 
+        this.inputDueDate.addEventListener('click', (event) => {
+            event.target.setAttribute('min', Utils.getDateTodayAsValue());
+        });
+        
         this.buttonSwitchTheme.addEventListener('click', () => {
             this.body.classList.toggle('dark');
         });
