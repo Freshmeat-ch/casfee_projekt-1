@@ -1,5 +1,8 @@
 import { todoService } from "../services/todo-service.js";
 
+// TODO: build filters and sortings
+// TODO: (optional) make a delete function
+
 export default class TodoController {
 
     constructor() {
@@ -26,6 +29,7 @@ export default class TodoController {
         });
 
         this.buttonForm.addEventListener('click', () => {
+            this.clearForm();
             this.changeAction('form');
         });
 
@@ -38,22 +42,23 @@ export default class TodoController {
             const todoObject = Object.fromEntries(todoFormData);
             const {todoId} = this.form.dataset;
 
+            if (todoId === '') {
+                // create a new todo and update the form with the created id
+                const newTodo = todoService.add(todoObject);
+                this.updateForm(newTodo);
+            } else {
+                // update the todo based on the todo id
+                todoService.update(todoId, todoObject);
+            }
+
             switch (event.submitter.id) {
                 case 'app-form-action-saveAndClose':
-                    todoService.add(todoObject);
                     this.clearForm();
                     this.render();
                     this.changeAction('list');
                     break;
                 default:
-                    if (todoId === '') {
-                        // create a new todo and update the form with the created id
-                        const newTodo = todoService.add(todoObject);
-                        this.updateForm(newTodo);
-                    } else {
-                        // update the todo based on the todo id
-                        todoService.update(todoId, todoObject);
-                    }
+                    this.render(); // make sure the list view is updated with the changes
             }
 
         });
@@ -87,8 +92,8 @@ export default class TodoController {
         this.form.querySelector('input#form-title').value = todo.title;
         this.form.querySelector('textarea#form-description').innerHTML = todo.description;
         this.form.querySelector('select#form-importance').value = todo.importance;
-        this.form.querySelector('input#form-dueDate').value = todo.dueDate; // TODO: this is not correctly applied due to the date object
-        this.form.querySelector('input#form-done').value = todo.done;
+        this.form.querySelector('input#form-dueDate').value = todo.dueDateAsValue();
+        this.form.querySelector('input#form-done').checked = todo.done;
     }
 
     clearForm() {

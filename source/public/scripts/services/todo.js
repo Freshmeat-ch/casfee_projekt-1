@@ -22,6 +22,11 @@ export class Todo {
         return `${String(dueDate.getDate()).padStart(2, '0')}.${String(dueDate.getMonth() + 1).padStart(2, '0')}.${String(dueDate.getFullYear())}`;
     }
 
+    dueDateAsValue() {
+        const dueDate = new Date(this.dueDate);
+        return `${String(dueDate.getFullYear())}-${String(dueDate.getMonth() + 1).padStart(2, '0')}-${String(dueDate.getDate()).padStart(2, '0')}`;
+    }
+
     toJSON() {
         return {
             id: this.id,

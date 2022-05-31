@@ -9,7 +9,8 @@ export class TodoService {
     }
 
     get(id) {
-       return this.storage.getId(id);
+       const object = this.storage.getId(id);
+       return new Todo(object.id, object.title, object.description, object.importance, object.createDate, object.dueDate, object.done);;
     }
     
     add(object) {
