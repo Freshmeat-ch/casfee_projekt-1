@@ -364,19 +364,19 @@ body.dark button#app-actions-switchTheme span::before {
 /** 
  * SORTINGS & FILTERS
  */
-div#app-list-controls button[data-sort="up"] span::before {
+div#app-list-controls button[data-sort-direction="up"] span::before {
   content: "\f0de";
 }
 
-div#app-list-controls button[data-sort="down"] span::before {
+div#app-list-controls button[data-sort-direction="down"] span::before {
   content: "\f0dd";
 }
 
-div#app-list-controls button[data-filter="enable"] span::before {
+div#app-list-controls button[data-filter-state="enable"] span::before {
   content: "\f205";
 }
 
-div#app-list-controls button[data-filter="disable"] span::before {
+div#app-list-controls button[data-filter-state="disable"] span::before {
   content: "\f204";
 }
 

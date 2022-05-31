@@ -8,6 +8,10 @@ import Utils from "../utils.js";
 export default class TodoController {
 
     constructor() {
+
+        this.sortBy = 'dueDate';
+        this.sortDirection = 'up';
+        this.filterComplete = false;
         
         // containers
         this.body = document.querySelector('body');
@@ -24,13 +28,18 @@ export default class TodoController {
         this.buttonSwitchTheme = document.querySelector('button#app-actions-switchTheme');
         this.buttonForm = document.querySelector('button#app-actions-form');
         this.buttonList = document.querySelector('button#app-form-action-list');
+        this.buttonSortByDefault = document.querySelector(`button[data-sort-by=${ this.sortBy }]`);
+
+        // buttons: all
+        this.buttonsSortBy = document.querySelectorAll('button[id^=sortBy]');
 
     }
 
     initEventHandlers() {
 
-        // set the min date for the due date input 
         this.inputDueDate.addEventListener('click', (event) => {
+            // set the min date for the due date input
+            // !!! this is nasty when editing a todo only for the purpose to set it to done.
             event.target.setAttribute('min', Utils.getDateTodayAsValue());
         });
         
@@ -44,6 +53,7 @@ export default class TodoController {
         });
 
         this.buttonList.addEventListener('click', () => {
+            this.clearForm();
             this.changeAction('list');
         });
 
@@ -91,6 +101,37 @@ export default class TodoController {
 
 
         });
+
+        this.buttonsSortBy.forEach((element) => {
+            element.addEventListener('click', (event) => {
+                this.resetSortBy() // reset all buttons state
+                const button = event.target;
+                const buttonSortBy = button.dataset.sortBy || this.sortBy;
+                if (this.sortBy === buttonSortBy) {
+                    this.sortBy = button.dataset.sortBy;
+                    this.sortDirection = (this.sortDirection === 'up') ? 'down' : 'up'; // invert the direction
+                } else {
+                    this.sortBy = button.dataset.sortBy;
+                    this.sortDirection = 'up' // start sorting is up
+                }
+                button.dataset.sortDirection = this.sortDirection;
+                todoService.sortBy(this.sortBy, this.sortDirection)
+                this.render();
+            });
+        })
+
+    }
+
+    setDefaultSortBy() {
+        this.buttonSortByDefault.dataset.sortDirection = this.sortDirection;
+        todoService.sortBy(this.sortBy, this.sortDirection)
+    }
+
+    resetSortBy() {
+        this.buttonsSortBy.forEach((element) => { 
+            const button = element;
+            button.dataset.sortDirection = ''; 
+        });
     }
 
     changeAction(action) {
@@ -107,13 +148,15 @@ export default class TodoController {
     }
 
     clearForm() {
+        this.form.dataset.todoId = '';
         this.form.reset();
+        this.form.querySelector('textarea#form-description').innerHTML = '';
     }
 
     // eslint-disable-next-line class-methods-use-this
     compileTodoTemplate(todo) {
         return `
-            <li class="item">
+            <li class="item" data-create-date="${todo.createDateAsTimestamp()}" data-due-date="${todo.dueDateAsTimestamp()}">
                 <h3>${todo.title} (${todo.createDate})</h3>
                 <p>${todo.description}</p>
                 <span class="item-importance"><span class="icon icon-importance-${todo.importance}"></span></span>
@@ -138,6 +181,7 @@ export default class TodoController {
 
     init() {
         todoService.load();
+        this.setDefaultSortBy();
         this.initEventHandlers();
         this.render();
     }
