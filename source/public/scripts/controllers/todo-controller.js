@@ -1,7 +1,6 @@
 import { todoService } from "../services/todo-service.js";
 import Utils from "../utils.js";
 
-// TODO: build filters and sortings
 // TODO: build the done function on the list view (maybe with a dialog?)
 // TODO: (optional) make a delete function
 
@@ -11,7 +10,7 @@ export default class TodoController {
 
         this.sortBy = 'dueDate';
         this.sortDirection = 'up';
-        this.filterComplete = false;
+        this.filtered = false;
         
         // containers
         this.body = document.querySelector('body');
@@ -29,6 +28,7 @@ export default class TodoController {
         this.buttonForm = document.querySelector('button#app-actions-form');
         this.buttonList = document.querySelector('button#app-form-action-list');
         this.buttonSortByDefault = document.querySelector(`button[data-sort-by=${ this.sortBy }]`);
+        this.buttonFilterDone = document.querySelector(`button[id=filterByDone]`);
 
         // buttons: all
         this.buttonsSortBy = document.querySelectorAll('button[id^=sortBy]');
@@ -120,11 +120,21 @@ export default class TodoController {
             });
         })
 
+        this.buttonFilterDone.addEventListener('click', () => {
+            this.filtered = !(this.filtered);
+            this.appListItemsContainer.dataset.filtered = this.filtered;
+            this.buttonFilterDone.dataset.filterState = this.filtered;
+        })
+
+    }
+
+    setDefaultFiltered() {
+        this.appListItemsContainer.dataset.filtered = this.filtered;
     }
 
     setDefaultSortBy() {
         this.buttonSortByDefault.dataset.sortDirection = this.sortDirection;
-        todoService.sortBy(this.sortBy, this.sortDirection)
+        todoService.sortBy(this.sortBy, this.sortDirection);
     }
 
     resetSortBy() {
@@ -156,7 +166,7 @@ export default class TodoController {
     // eslint-disable-next-line class-methods-use-this
     compileTodoTemplate(todo) {
         return `
-            <li class="item" data-create-date="${todo.createDateAsTimestamp()}" data-due-date="${todo.dueDateAsTimestamp()}">
+            <li class="item" data-state-done="${todo.done}" data-create-date="${todo.createDateAsTimestamp()}" data-due-date="${todo.dueDateAsTimestamp()}">
                 <h3>${todo.title} (${todo.createDate})</h3>
                 <p>${todo.description}</p>
                 <span class="item-importance"><span class="icon icon-importance-${todo.importance}"></span></span>
@@ -182,6 +192,7 @@ export default class TodoController {
     init() {
         todoService.load();
         this.setDefaultSortBy();
+        this.setDefaultFiltered();
         this.initEventHandlers();
         this.render();
     }

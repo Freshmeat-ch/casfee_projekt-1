@@ -372,11 +372,11 @@ div#app-list-controls button[data-sort-direction="down"] span::before {
   content: "\f0dd";
 }
 
-div#app-list-controls button[data-filter-state="enable"] span::before {
+div#app-list-controls button[data-filter-state="true"] span::before {
   content: "\f205";
 }
 
-div#app-list-controls button[data-filter-state="disable"] span::before {
+div#app-list-controls button[data-filter-state="false"] span::before {
   content: "\f204";
 }
 
@@ -424,6 +424,10 @@ ol li.item {
   border-bottom: 1px solid black;
   gap: var(--spacing);
   padding: var(--spacing);
+}
+
+ol[data-filtered="true"] li.item[data-state-done="true"] {
+  display: none;
 }
 
 ol li.item h3 {

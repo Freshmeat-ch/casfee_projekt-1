@@ -32,6 +32,11 @@ export class TodoService {
         return (direction === 'up') ? sortedTodos : sortedTodos.reverse();
     }
 
+    filterBy(field, value) {
+        const filteredTodos = this.todos.filter((todo) => todo[field] === value);
+        return filteredTodos;
+    }
+
     load() {
         this.todos = this.storage.getAll().map(todo => new Todo(todo.title, todo.description, todo.dueDate, todo.id, todo.createDate, todo.importance, todo.done));
     }
