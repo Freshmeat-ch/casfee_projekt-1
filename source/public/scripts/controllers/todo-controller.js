@@ -3,6 +3,8 @@ import Utils from "../utils.js";
 
 // TODO: build the done function on the list view (maybe with a dialog?)
 // TODO: (optional) make a delete function
+// TODO: make no due date possible
+// TODO: make date in list view readable (today, tomorrow, in a week, someday, the date)
 
 export default class TodoController {
 
@@ -128,11 +130,11 @@ export default class TodoController {
 
     }
 
-    setDefaultFiltered() {
+    initDefaultFiltered() {
         this.appListItemsContainer.dataset.filtered = this.filtered;
     }
 
-    setDefaultSortBy() {
+    initDefaultSortBy() {
         this.buttonSortByDefault.dataset.sortDirection = this.sortDirection;
         todoService.sortBy(this.sortBy, this.sortDirection);
     }
@@ -167,7 +169,7 @@ export default class TodoController {
     compileTodoTemplate(todo) {
         return `
             <li class="item" data-state-done="${todo.done}" data-create-date="${todo.createDateAsTimestamp()}" data-due-date="${todo.dueDateAsTimestamp()}">
-                <h3>${todo.title} (${todo.createDate})</h3>
+                <h3>${todo.title}</h3>
                 <p>${todo.description}</p>
                 <span class="item-importance"><span class="icon icon-importance-${todo.importance}"></span></span>
                 <span class="item-dueDate">${todo.dueDateHr()}</span>
@@ -191,8 +193,8 @@ export default class TodoController {
 
     init() {
         todoService.load();
-        this.setDefaultSortBy();
-        this.setDefaultFiltered();
+        this.initDefaultSortBy();
+        this.initDefaultFiltered();
         this.initEventHandlers();
         this.render();
     }
