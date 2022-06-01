@@ -1,6 +1,6 @@
 :root {
-  --font-family-logo: "Dosis", sans-serif;
-  --font-family: "Fira Sans", sans-serif;
+  --font-family-logo: 'Dosis', sans-serif;
+  --font-family: 'Fira Sans', sans-serif;
   --font-size: 18px;
   --spacing: 10px;
 
@@ -16,141 +16,53 @@
   --color-default-s: 0%;
   --color-default-l: 50%;
 
-  --color-default: hsl(
-    var(--color-default-h),
-    var(--color-default-s),
-    var(--color-default-l)
-  );
-  --color-default-dark: hsl(
-    var(--color-default-h),
-    var(--color-default-s),
-    calc(var(--color-default-l) - var(--dark-percentage))
-  );
-  --color-default-light: hsl(
-    var(--color-default-h),
-    var(--color-default-s),
-    calc(var(--color-default-l) + var(--light-percentage))
-  );
+  --color-default: hsl(var(--color-default-h), var(--color-default-s), var(--color-default-l));
+  --color-default-dark: hsl(var(--color-default-h), var(--color-default-s), calc(var(--color-default-l) - var(--dark-percentage)));
+  --color-default-light: hsl(var(--color-default-h), var(--color-default-s), calc(var(--color-default-l) + var(--light-percentage)));
 
   --color-primary-h: 0;
   --color-primary-s: 100%;
   --color-primary-l: 50%;
-  --color-primary: hsl(
-    var(--color-primary-h),
-    var(--color-primary-s),
-    var(--color-primary-l)
-  );
-  --color-primary-dark: hsl(
-    var(--color-primary-h),
-    var(--color-primary-s),
-    calc(var(--color-primary-l) - var(--dark-percentage))
-  );
-  --color-primary-light: hsl(
-    var(--color-primary-h),
-    var(--color-primary-s),
-    calc(var(--color-primary-l) + var(--light-percentage))
-  );
+  --color-primary: hsl(var(--color-primary-h), var(--color-primary-s), var(--color-primary-l));
+  --color-primary-dark: hsl(var(--color-primary-h), var(--color-primary-s), calc(var(--color-primary-l) - var(--dark-percentage)));
+  --color-primary-light: hsl(var(--color-primary-h), var(--color-primary-s), calc(var(--color-primary-l) + var(--light-percentage)));
 
   --color-black-h: 0;
   --color-black-s: 0%;
   --color-black-l: 0%;
-  --color-black: hsl(
-    var(--color-black-h),
-    var(--color-black-s),
-    var(--color-black-l)
-  );
-  --color-black-dark: hsl(
-    var(--color-black-h),
-    var(--color-black-s),
-    calc(var(--color-black-l) - var(--dark-percentage))
-  );
-  --color-black-light: hsl(
-    var(--color-black-h),
-    var(--color-black-s),
-    calc(var(--color-black-l) + var(--light-percentage))
-  );
+  --color-black: hsl(var(--color-black-h), var(--color-black-s), var(--color-black-l));
+  --color-black-dark: hsl(var(--color-black-h), var(--color-black-s), calc(var(--color-black-l) - var(--dark-percentage)));
+  --color-black-light: hsl(var(--color-black-h), var(--color-black-s), calc(var(--color-black-l) + var(--light-percentage)));
 
   --color-green-h: 100;
   --color-green-s: 50%;
   --color-green-l: 50%;
-  --color-green: hsl(
-    var(--color-green-h),
-    var(--color-green-s),
-    var(--color-green-l)
-  );
-  --color-green-dark: hsl(
-    var(--color-green-h),
-    var(--color-green-s),
-    calc(var(--color-green-l) - var(--dark-percentage))
-  );
-  --color-green-light: hsl(
-    var(--color-green-h),
-    var(--color-green-s),
-    calc(var(--color-green-l) + var(--light-percentage))
-  );
+  --color-green: hsl(var(--color-green-h), var(--color-green-s), var(--color-green-l));
+  --color-green-dark: hsl(var(--color-green-h), var(--color-green-s), calc(var(--color-green-l) - var(--dark-percentage)));
+  --color-green-light: hsl(var(--color-green-h), var(--color-green-s), calc(var(--color-green-l) + var(--light-percentage)));
 
   --color-orange-h: 25;
   --color-orange-s: 100%;
   --color-orange-l: 50%;
-  --color-orange: hsl(
-    var(--color-orange-h),
-    var(--color-orange-s),
-    var(--color-orange-l)
-  );
-  --color-orange-dark: hsl(
-    var(--color-orange-h),
-    var(--color-orange-s),
-    calc(var(--color-orange-l) - var(--dark-percentage))
-  );
-  --color-orange-light: hsl(
-    var(--color-orange-h),
-    var(--color-orange-s),
-    calc(var(--color-orange-l) + var(--light-percentage))
-  );
+  --color-orange: hsl(var(--color-orange-h), var(--color-orange-s), var(--color-orange-l));
+  --color-orange-dark: hsl(var(--color-orange-h), var(--color-orange-s), calc(var(--color-orange-l) - var(--dark-percentage)));
+  --color-orange-light: hsl(var(--color-orange-h), var(--color-orange-s), calc(var(--color-orange-l) + var(--light-percentage)));
 
   --color-red-h: 0;
   --color-red-s: 100%;
   --color-red-l: 50%;
   --color-red: hsl(var(--color-red-h), var(--color-red-s), var(--color-red-l));
-  --color-red-dark: hsl(
-    var(--color-red-h),
-    var(--color-red-s),
-    calc(var(--color-red-l) - var(--dark-percentage))
-  );
-  --color-red-light: hsl(
-    var(--color-red-h),
-    var(--color-red-s),
-    calc(var(--color-red-l) + var(--light-percentage))
-  );
+  --color-red-dark: hsl(var(--color-red-h), var(--color-red-s), calc(var(--color-red-l) - var(--dark-percentage)));
+  --color-red-light: hsl(var(--color-red-h), var(--color-red-s), calc(var(--color-red-l) + var(--light-percentage)));
 
   --color-grey-h: 360;
   --color-grey-s: 0%;
   --color-grey-l: 50%;
-  --color-grey: hsl(
-    var(--color-grey-h),
-    var(--color-grey-s),
-    var(--color-grey-l)
-  );
-  --color-grey-dark: hsl(
-    var(--color-grey-h),
-    var(--color-grey-s),
-    calc(var(--color-grey-l) - var(--dark-percentage))
-  );
-  --color-grey-ultradark: hsl(
-    var(--color-grey-h),
-    var(--color-grey-s),
-    calc(var(--color-grey-l) - var(--ultradark-percentage))
-  );
-  --color-grey-light: hsl(
-    var(--color-grey-h),
-    var(--color-grey-s),
-    calc(var(--color-grey-l) + var(--light-percentage))
-  );
-  --color-grey-ultralight: hsl(
-    var(--color-grey-h),
-    var(--color-grey-s),
-    calc(var(--color-grey-l) + var(--ultralight-percentage))
-  );
+  --color-grey: hsl(var(--color-grey-h), var(--color-grey-s), var(--color-grey-l));
+  --color-grey-dark: hsl(var(--color-grey-h), var(--color-grey-s), calc(var(--color-grey-l) - var(--dark-percentage)));
+  --color-grey-ultradark: hsl(var(--color-grey-h), var(--color-grey-s), calc(var(--color-grey-l) - var(--ultradark-percentage)));
+  --color-grey-light: hsl(var(--color-grey-h), var(--color-grey-s), calc(var(--color-grey-l) + var(--light-percentage)));
+  --color-grey-ultralight: hsl(var(--color-grey-h), var(--color-grey-s), calc(var(--color-grey-l) + var(--ultralight-percentage)));
 }
 
 body.dark {
@@ -291,113 +203,177 @@ div#app-list-items {
 }
 
 .icon-plus::before {
-  content: "\2b";
+  content: '\2b';
 }
 
 .icon-moon::before {
-  content: "\f186";
+  content: '\f186';
 }
 
 .icon-sun::before {
-  content: "\f185";
+  content: '\f185';
 }
 
 .icon-sort::before {
-  content: "\f0dc";
+  content: '\f0dc';
 }
 
 .icon-sort-down::before {
-  content: "\f0dd";
+  content: '\f0dd';
 }
 
 .icon-sort-up::before {
-  content: "\f0de";
+  content: '\f0de';
 }
 
 .icon-filter-on::before {
-  content: "\f205";
+  content: '\f205';
 }
 
 .icon-filter-off::before {
-  content: "\f204";
+  content: '\f204';
 }
 
 .icon-edit::before {
-  content: "\f304";
+  content: '\f304';
 }
 
 .icon-done::before {
-  content: "\f00c";
+  content: '\f00c';
 }
 
 .icon-importance-5::before {
   color: var(--color-red);
-  content: "\f244";
+  content: '\f244';
 }
 
 .icon-importance-4::before {
   color: var(--color-orange);
-  content: "\f243";
+  content: '\f243';
 }
 
 .icon-importance-3::before {
-  content: "\f242";
+  content: '\f242';
 }
 
 .icon-importance-2::before {
   color: var(--color-grey);
-  content: "\f241";
+  content: '\f241';
 }
 
 .icon-importance-1::before {
   color: var(--color-grey-light);
-  content: "\f240";
+  content: '\f240';
+}
+
+/**
+ * BUTTONS
+ */
+button.item-edit::after,
+button.item-done::after,
+button#app-actions-form::after,
+button#app-actions-switchTheme::after,
+button[data-sort-by]::after,
+button[data-filter-done-state]::after,
+button[data-filter-overdue-state]::after {
+  font: var(--fa-font-solid);
+  display: inline-block;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  margin: 0 0 0 var(--spacing);
+}
+
+button.item-edit::after {
+  content: '\f304';
+}
+
+button.item-done::after {
+  content: '\f00c';
+}
+
+button#app-actions-form::after {
+  content: '\2b';
+}
+
+button#app-actions-switchTheme::after {
+  content: '\f186';
+}
+
+button[data-sort-by]::after {
+  content: '\f0dc';
+}
+
+button[data-sort-direction='up']::after {
+  content: '\f0de';
+}
+
+button[data-sort-direction='down']::after {
+  content: '\f0dd';
+}
+
+button[data-filter-done-state='inactive']::after,
+button[data-filter-overdue-state='inactive']::after {
+  content: '\f204';
+}
+
+button[data-filter-done-state='active']::after,
+button[data-filter-overdue-state='active']::after {
+  content: '\f205';
+}
+
+button[data-filter-done-state='active'],
+button[data-filter-overdue-state='active'],
+button[data-sort-direction='up'],
+button[data-sort-direction='down'] {
+  background: green;
 }
 
 /** 
  * THEME SWITCHER
  */
-body.dark button#app-actions-switchTheme span::before {
-  content: "\f185";
+body.dark button#app-actions-switchTheme::after {
+  content: '\f185';
 }
 
 /** 
  * SORTINGS & FILTERS
  */
-div#app-list-controls button[data-sort-direction="up"] span::before {
-  content: "\f0de";
+div#app-list-controls button[data-sort-direction='up'] span::before {
+  content: '\f0de';
 }
 
-div#app-list-controls button[data-sort-direction="down"] span::before {
-  content: "\f0dd";
+div#app-list-controls button[data-sort-direction='down'] span::before {
+  content: '\f0dd';
 }
 
-div#app-list-controls button[data-filter-state="true"] span::before {
-  content: "\f205";
+div#app-list-controls button[data-filter-done-state='active'] span::before,
+div#app-list-controls button[data-filter-overdue-state='active'] span::before {
+  content: '\f205';
 }
 
-div#app-list-controls button[data-filter-state="false"] span::before {
-  content: "\f204";
+div#app-list-controls button[data-filter-done-state='inactive'] span::before,
+div#app-list-controls button[data-filter-overdue-state='inactive'] span::before {
+  content: '\f204';
 }
 
 /**
  * APP STATES
  */
-div#app[data-action="list"] div#app-actions,
-div#app[data-action="list"] div#app-list {
+div#app[data-action='list'] div#app-actions,
+div#app[data-action='list'] div#app-list {
   display: block;
 }
 
-div#app[data-action="list"] div#app-form {
+div#app[data-action='list'] div#app-form {
   display: none;
 }
 
-div#app[data-action="form"] div#app-actions,
-div#app[data-action="form"] div#app-list {
+div#app[data-action='form'] div#app-actions,
+div#app[data-action='form'] div#app-list {
   display: none;
 }
 
-div#app[data-action="form"] div#app-form {
+div#app[data-action='form'] div#app-form {
   display: block;
 }
 
@@ -419,15 +395,31 @@ ol li.item {
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 10fr 1fr;
   grid-template-areas:
-    "dueDate title edit"
-    "importance description done";
+    'dueDate title edit'
+    'importance description done';
   border-bottom: 1px solid black;
   gap: var(--spacing);
   padding: var(--spacing);
 }
 
-ol[data-filtered="true"] li.item[data-state-done="true"] {
+ol[data-filter-done='yes'] li.item[data-state='done'] {
   display: none;
+}
+
+ol[data-filter-overdue='yes'] li.item:not([data-state='overdue']) {
+  display: none;
+}
+
+ol li.item[data-state='overdue'] {
+  background-color: red;
+}
+
+ol li.item[data-state='done'] {
+  background-color: green;
+}
+
+ol li.item[data-state='done'] button.item-done::after {
+  content: '\f2ea';
 }
 
 ol li.item h3 {

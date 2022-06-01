@@ -20,35 +20,34 @@
   <div id="app" data-action="list">
     <h1 class="logo">tuuduu</h1>
     <div id="app-actions">
-      <button id="app-actions-form" class="button">Create new&emsp;<span class="icon icon-plus"></span></button>
-      <button id="app-actions-switchTheme" class="button">Switch Theme&emsp;<span
-          class="icon icon-moon"></span></button>
+      <button id="app-actions-form" class="button">Neues Todo erstellen</button>
+      <button id="app-actions-switchTheme" class="button">Theme wechseln</button>
     </div>
     <div id="app-form">
       <form action="javascript:void(0);" method="post" data-todo-id="">
         <fieldset>
 
-          <label for="form-title">Title</label>
-          <input name="title" id="form-title" type="text" value="" placeholder="Titel des Todos" maxlength="255"
-            minlength="1" required>
+          <label for="form-title">Titel</label>
+          <input name="title" id="form-title" type="text" value="" placeholder="Titel" maxlength="255" minlength="1"
+            required>
 
           <label for="form-description">Description</label>
           <textarea name="description" id="form-description" minlength="10"
             placeholder="Beschreibung was gemacht werden muss."></textarea>
 
-          <label for="form-importance">Importance</label>
+          <label for="form-importance">Wichtigkeit</label>
           <select name="importance" id="form-importance">
-            <option value="1">Whenever</option>
-            <option value="2">Low</option>
+            <option value="1">Sehr Tief</option>
+            <option value="2">Tief</option>
             <option value="3" selected>Normal</option>
-            <option value="4">High</option>
-            <option value="5">ASAP</option>
+            <option value="4">Hoch</option>
+            <option value="5">Sehr Hoch</option>
           </select>
 
-          <label for="form-dueDate">Due date</label>
+          <label for="form-dueDate">Fälligkeit</label>
           <input name="dueDate" id="form-dueDate" type="date" min="" required>
 
-          <label for="form-done">Mark as done</label>
+          <label for="form-done">Erledigt</label>
           <input name="done" id="form-done" type="checkbox" value="true">
 
         </fieldset>
@@ -61,16 +60,17 @@
     </div>
     <div id="app-list">
       <div id="app-list-controls">
-        <button id="sortByTitle" type="button" class="button" data-sort-by="title" data-sort-direction="">By
-          Title&emsp;<span class="icon icon-sort"></span></button>
-        <button id="sortByDueDate" type="button" class="button" data-sort-by="dueDate" data-sort-direction="">By Due
-          Date&emsp;<span class="icon icon-sort"></span></button>
-        <button id="sortByCreateDate" type="button" class="button" data-sort-by="createDate" data-sort-direction="">By
-          Creation Date&emsp;<span class="icon icon-sort"></span></button>
-        <button id="sortByImportance" type="button" class="button" data-sort-by="importance" data-sort-direction="">By
-          Importance&emsp;<span class="icon icon-sort"></span></button>
-        <button id="filterByDone" type="button" class="button" data-filter-by="done" data-filter-state="">Filter
-          Completed&emsp;<span class="icon icon-filter-off"></span></button>
+        <button id="sortByTitle" type="button" class="button" data-sort-by="title" data-sort-direction="">Nach
+          Titel</button>
+        <button id="sortByDueDate" type="button" class="button" data-sort-by="dueDate" data-sort-direction="">Nach
+          Fälligkeit</button>
+        <button id="sortByImportance" type="button" class="button" data-sort-by="importance" data-sort-direction="">Nach
+          Wichtigkeit</button>
+        <button id="sortByCreateDate" type="button" class="button" data-sort-by="createDate" data-sort-direction="">Nach
+          Erstelldatum</button>
+        <button id="filterByDone" type="button" class="button" data-filter-done-state="">Erledigte ausblenden</button>
+        <button id="filterByOverdue" type="button" class="button" data-filter-overdue-state="">Nur Überfällige
+          anzeigen</button>
       </div>
 
       <div id="app-list-items">

@@ -1,34 +1,32 @@
-export class TodoStorage {
-    
-    constructor() {
-        const todos = JSON.parse(localStorage.getItem('todos') || JSON.stringify([]));
-        this.todos = todos;
-        localStorage.setItem('todos', JSON.stringify(todos));
-    }
-    
-    add(todo) {
-        this.todos.push(todo);
-        this.persist();
-    }
-    
-    update(todo) {
-        this.todos.forEach((item, key) => { if (item.id === todo.id) this.todos[key] = todo });
-        this.persist();
-    }
+export default class TodoStorage {
+  constructor() {
+    const todos = JSON.parse(localStorage.getItem('todos') || JSON.stringify([]));
+    this.todos = todos;
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }
 
-    getId(id) {
-        return this.todos.find(item => item.id === id);
-    }
+  add(todo) {
+    this.todos.push(todo);
+    this.persist();
+  }
 
-    getAll() {
-        return this.todos;
-    }
+  update(todo) {
+    this.todos.forEach((item, key) => {
+      if (item.id === todo.id) this.todos[key] = todo;
+    });
+    this.persist();
+  }
 
-    persist() {
-        localStorage.setItem('todos', JSON.stringify(this.todos));
-        return this.todos;
-    }
+  getId(id) {
+    return this.todos.find((item) => item.id === id);
+  }
 
+  getAll() {
+    return this.todos;
+  }
+
+  persist() {
+    localStorage.setItem('todos', JSON.stringify(this.todos));
+    return this.todos;
+  }
 }
-
-export const todoStorage = new TodoStorage();
