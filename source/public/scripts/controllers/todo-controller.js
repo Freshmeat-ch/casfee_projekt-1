@@ -1,13 +1,15 @@
-import { todoService } from '../services/todo-service.js';
-import Utils from '../utils.js';
-import todoView from '../views/todo-view.js';
+import { TodoService } from '../services/todo-service.js';
+import { Utils } from '../utils.js';
+import { todoView } from '../views/todo-view.js';
 
-// TODO: build the done function on the list view (maybe with a dialog?)
 // TODO: (optional) make a delete function
 // TODO: make no due date possible
+// TODO: check the validation (currently on firefox the form validation errors are only shown once)
 
 export default class TodoController {
   constructor() {
+    this.todoService = new TodoService();
+
     // sortings & filters defaults
     this.sortBy = 'dueDate';
     this.sortDirection = 'up';
@@ -67,11 +69,11 @@ export default class TodoController {
 
       if (todoId === '') {
         // create a new todo and update the form with the created id
-        const newTodo = todoService.add(todoObject);
+        const newTodo = this.todoService.add(todoObject);
         this.updateForm(newTodo);
       } else {
         // update the todo based on the todo id
-        todoService.update(todoId, todoObject);
+        this.todoService.update(todoId, todoObject);
       }
 
       switch (event.submitter.id) {
@@ -88,12 +90,12 @@ export default class TodoController {
     this.appListItemsContainer.addEventListener('click', (event) => {
       const { todoId } = event.target.dataset;
       const { action } = event.target.dataset;
-      const todo = todoService.get(todoId);
+      const todo = this.todoService.get(todoId);
 
       switch (action) {
         case 'done':
           todo.done = !todo.done;
-          todoService.update(todoId, todo);
+          this.todoService.update(todoId, todo);
           this.render();
           break;
         default:
@@ -115,7 +117,7 @@ export default class TodoController {
           this.sortDirection = 'up'; // start sorting is up
         }
         button.dataset.sortDirection = this.sortDirection;
-        todoService.sortBy(this.sortBy, this.sortDirection);
+        this.todoService.sortBy(this.sortBy, this.sortDirection);
         this.render();
       });
     });
@@ -144,7 +146,7 @@ export default class TodoController {
 
   initDefaultSortBy() {
     this.buttonSortByDefault.dataset.sortDirection = this.sortDirection;
-    todoService.sortBy(this.sortBy, this.sortDirection);
+    this.todoService.sortBy(this.sortBy, this.sortDirection);
   }
 
   resetSortBy() {
@@ -187,12 +189,12 @@ export default class TodoController {
   }
 
   render() {
-    todoService.sortBy(this.sortBy, this.sortDirection);
-    this.appListItemsContainer.innerHTML = this.renderTodos(todoService.todos);
+    this.todoService.sortBy(this.sortBy, this.sortDirection);
+    this.appListItemsContainer.innerHTML = this.renderTodos(this.todoService.todos);
   }
 
   init() {
-    todoService.load();
+    this.todoService.load();
     this.initDefaultSortBy();
     this.initDefaultFilterStates();
     this.initEventHandlers();

@@ -1,6 +1,6 @@
-import Utils from '../utils.js';
+import { Utils } from '../utils.js';
 
-export default class Todo {
+export class Todo {
   constructor(title, description, dueDate, id = null, createDate = new Date(), importance = 3, done = false) {
     this.id = id || Utils.generateId();
     this.title = title;
@@ -46,15 +46,16 @@ export default class Todo {
   }
 
   dueDateAsText() {
-    const offsetInDays = this.dueDateOffsetInDays();
     switch (true) {
-      case offsetInDays < 0:
+      case this.state() === 'done':
+        return 'Erledigt';
+      case this.dueDateOffsetInDays() < 0:
         return 'Überfällig';
-      case offsetInDays === 0:
+      case this.dueDateOffsetInDays() === 0:
         return 'Heute';
-      case offsetInDays === 1:
+      case this.dueDateOffsetInDays() === 1:
         return 'Morgen';
-      case offsetInDays === 7:
+      case this.dueDateOffsetInDays() === 7:
         return 'In einer Woche';
       default:
         return this.dueDateHr();

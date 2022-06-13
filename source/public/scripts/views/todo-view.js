@@ -1,4 +1,4 @@
-export default function todoView(todo) {
+export function todoView(todo) {
   return `
         <li class="item" data-state="${todo.state()}" data-create-date="${todo.createDateAsTimestamp()}" data-due-date="${todo.dueDateAsTimestamp()}">
             <h3>${todo.title}</h3>

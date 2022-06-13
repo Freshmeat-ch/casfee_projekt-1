@@ -1,4 +1,4 @@
-export default class Utils {
+export class Utils {
   static generateId() {
     function randomChars() {
       return Math.random().toString(16).slice(-4);

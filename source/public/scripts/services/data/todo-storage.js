@@ -1,4 +1,4 @@
-export default class TodoStorage {
+export class TodoStorage {
   constructor() {
     const todos = JSON.parse(localStorage.getItem('todos') || JSON.stringify([]));
     this.todos = todos;
