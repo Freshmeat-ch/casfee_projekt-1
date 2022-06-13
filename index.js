@@ -1,11 +1,12 @@
-import express from 'express';
+import dotenv from 'dotenv';
 
-const app = express();
-const port = 3000;
+dotenv.config({ path: '.env' });
 
-app.use(express.static('public'));
+// load app with current config
+const app = (await import('./app.js')).app;
 
-app.listen(port, () => {
-    // eslint-disable-next-line no-console
-    console.log(`Example app listening at http://localhost:${port}`);
+const hostname = '127.0.0.1';
+const port = 3001;
+app.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
 });
