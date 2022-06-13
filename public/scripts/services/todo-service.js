@@ -36,7 +36,16 @@ export class TodoService {
     return filteredTodos;
   }
 
-  load() {
-    this.todos = this.storage.getAll().map((todo) => new Todo(todo.title, todo.description, todo.dueDate, todo.id, todo.createDate, todo.importance, todo.done));
+  async load() {
+    const todos = await fetch('/todos/', {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => data);
+    this.todos = todos.map((todo) => new Todo(todo.title, todo.description, todo.dueDate, todo.id, todo.createDate, todo.importance, todo.done));
+    return this.todos;
   }
 }

@@ -5,6 +5,7 @@ import { todoView } from '../views/todo-view.js';
 // TODO: (optional) make a delete function
 // TODO: make no due date possible
 // TODO: check the validation (currently on firefox the form validation errors are only shown once)
+// TODO: show a message when there is no todo
 
 export default class TodoController {
   constructor() {
@@ -193,8 +194,8 @@ export default class TodoController {
     this.appListItemsContainer.innerHTML = this.renderTodos(this.todoService.todos);
   }
 
-  init() {
-    this.todoService.load();
+  async init() {
+    await this.todoService.load();
     this.initDefaultSortBy();
     this.initDefaultFilterStates();
     this.initEventHandlers();
