@@ -1,5 +1,5 @@
-import TodoStorage from './data/todo-storage.js';
-import Todo from './todo.js';
+import { TodoStorage } from './data/todo-storage.js';
+import { Todo } from './todo.js';
 
 export class TodoService {
   constructor() {
@@ -40,5 +40,3 @@ export class TodoService {
     this.todos = this.storage.getAll().map((todo) => new Todo(todo.title, todo.description, todo.dueDate, todo.id, todo.createDate, todo.importance, todo.done));
   }
 }
-
-export const todoService = new TodoService();
