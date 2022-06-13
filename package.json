@@ -1,7 +1,7 @@
 {
-  "name": "cas-fee-projekt-1-starter-template",
+  "name": "tuuduu",
   "version": "1.0.0",
-  "description": "Testat template",
+  "description": "Simple todo manager built with vanilla js and express.js",
   "type": "module",
   "scripts": {
     "start": "node index.js",
@@ -11,7 +11,7 @@
     "eslint": "eslint \"**/*.js\"",
     "all": "npm run stylelint && npm run w3c  && npm run eslint  && node -e \"console.log('npm run all completed')\""
   },
-  "author": "Michael Gfeller",
+  "author": "Cornel Widmer",
   "license": "ISC",
   "devDependencies": {
     "eslint": "^8.14.0",
