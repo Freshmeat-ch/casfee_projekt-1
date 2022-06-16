@@ -2,9 +2,6 @@ import { TodoService } from '../services/todo-service.js';
 import { Todo } from '../services/todo.js';
 import { todoView } from '../views/todo-view.js';
 
-// TODO: check the validation (currently on firefox the form validation errors are only shown once)
-// TODO: show a message when there is no todo
-
 export default class TodoController {
   constructor() {
     this.todoService = new TodoService();
