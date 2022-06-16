@@ -1,5 +1,6 @@
 export class TodoService {
   async create(todo) {
+    console.log(todo);
     return fetch(`/todos/`, {
       method: 'POST',
       body: JSON.stringify(todo),
@@ -18,10 +19,10 @@ export class TodoService {
     }).then((res) => res.json());
   }
 
-  async update(id, object) {
+  async update(id, todo) {
     return fetch(`/todos/${id}`, {
       method: 'PUT',
-      body: JSON.stringify(object),
+      body: JSON.stringify(todo),
       headers: {
         'content-type': 'application/json',
       },

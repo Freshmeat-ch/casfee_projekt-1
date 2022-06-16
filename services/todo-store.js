@@ -6,7 +6,7 @@ export class TodoStore {
   }
 
   async add(todo) {
-    this.db.insert(todo);
+    return this.db.insert(todo);
   }
 
   async get(id) {

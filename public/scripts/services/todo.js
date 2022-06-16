@@ -11,7 +11,7 @@ export class Todo {
     } else {
       this.dueDate = null;
     }
-    this.done = done;
+    this.done = done === 'true';
     this.id = id;
   }
 
