@@ -1,14 +1,25 @@
+import { todoStore } from '../services/todo-store.js';
+
 export class TodosController {
-  constructor() {
-    this.mockData = [
-      { id: '4f6ae2a7225c', title: 'safasd', description: 'fasdf asd fasd f', importance: 3, createDate: '2022-06-13T21:10:04.360Z', dueDate: '2022-06-19T22:00:00.000Z', done: false },
-      { id: 'aaadeda8e7d8', title: 'tasdf', description: 'sasdfasd fas df', importance: 3, createDate: '2022-06-13T21:14:55.377Z', dueDate: '2022-06-28T22:00:00.000Z', done: false },
-    ];
+  async add(req, res) {
+    return res.json(await todoStore.add(req.body));
   }
 
-  getAll = async (req, res) => {
-    return res.json(this.mockData);
-  };
+  async get(req, res) {
+    return res.json(await todoStore.get(req.params.id));
+  }
+
+  async update(req, res) {
+    return res.json(await todoStore.update(req.params.id, req.body));
+  }
+
+  async delete(req, res) {
+    return res.json(await todoStore.delete(req.params.id));
+  }
+
+  async getAll(req, res) {
+    return res.json((await todoStore.getAll()) || []);
+  }
 }
 
 export const todosController = new TodosController();

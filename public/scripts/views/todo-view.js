@@ -5,8 +5,8 @@ export function todoView(todo) {
             <p>${todo.description}</p>
             <span class="item-importance"><span class="icon icon-importance-${todo.importance}"></span></span>
             <span class="item-dueDate">${todo.dueDateAsText()}</span>
-            <button class="item-edit" data-todo-id="${todo.id}" data-action="edit" title="Diese Todo bearbeiten"></button>
-            <button class="item-done" data-todo-id="${todo.id}" data-action="done" title="Diese Todo als erledigt/offen markieren"></button>
+            <button class="item-edit" data-id="${todo.id}" data-action="edit" title="Diese Todo bearbeiten"></button>
+            <button class="item-done" data-id="${todo.id}" data-action="done" title="Diese Todo als erledigt/offen markieren"></button>
         </li>
     `;
 }

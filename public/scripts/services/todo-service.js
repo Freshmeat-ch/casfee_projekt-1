@@ -1,51 +1,53 @@
-import { TodoStorage } from './data/todo-storage.js';
-import { Todo } from './todo.js';
-
 export class TodoService {
-  constructor() {
-    this.storage = new TodoStorage();
-    this.todos = [];
+  async create(todo) {
+    return fetch(`/todos/`, {
+      method: 'POST',
+      body: JSON.stringify(todo),
+      headers: {
+        'content-type': 'application/json',
+      },
+    }).then((res) => res.json());
   }
 
-  get(id) {
-    const object = this.storage.getId(id);
-    return new Todo(object.title, object.description, object.dueDate, object.id, object.createDate, object.importance, object.done);
-  }
-
-  add(object) {
-    const todo = new Todo(object.title, object.description, object.dueDate, object.id, object.createDate, object.importance, object.done);
-    this.storage.add(todo);
-    this.load();
-    return todo;
-  }
-
-  update(id, object) {
-    const todo = new Todo(object.title, object.description, object.dueDate, id, object.createDate, object.importance, object.done);
-    this.storage.update(todo);
-    this.load();
-    return todo;
-  }
-
-  sortBy(field, direction) {
-    const sortedTodos = this.todos.sort((a, b) => (a[field] > b[field] ? 1 : -1));
-    return direction === 'up' ? sortedTodos : sortedTodos.reverse();
-  }
-
-  filterBy(field, value) {
-    const filteredTodos = this.todos.filter((todo) => todo[field] === value);
-    return filteredTodos;
-  }
-
-  async load() {
-    const todos = await fetch('/todos/', {
+  async get(id) {
+    return fetch(`/todos/${id}`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
       },
-    })
-      .then((res) => res.json())
-      .then((data) => data);
-    this.todos = todos.map((todo) => new Todo(todo.title, todo.description, todo.dueDate, todo.id, todo.createDate, todo.importance, todo.done));
-    return this.todos;
+    }).then((res) => res.json());
+  }
+
+  async update(id, object) {
+    return fetch(`/todos/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(object),
+      headers: {
+        'content-type': 'application/json',
+      },
+    }).then((res) => res.json());
+  }
+
+  async delete(id) {
+    return fetch(`/todos/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+      },
+    }).then((res) => res.json());
+  }
+
+  async getAll() {
+    return fetch('/todos/', {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+      },
+    }).then((res) => res.json());
+  }
+
+  sortBy(todos, field, direction) {
+    const sortedTodos = todos.sort((a, b) => (a[field] > b[field] ? 1 : -1));
+    return direction === 'up' ? sortedTodos : sortedTodos.reverse();
   }
 }

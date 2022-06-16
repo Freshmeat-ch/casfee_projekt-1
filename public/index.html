@@ -24,7 +24,7 @@
       <button id="app-actions-switchTheme" class="button">Theme wechseln</button>
     </div>
     <div id="app-form">
-      <form action="javascript:void(0);" method="post" data-todo-id="">
+      <form action="javascript:void(0);" method="post" data-id="">
         <fieldset>
 
           <label for="form-title">Titel</label>
@@ -45,7 +45,7 @@
           </select>
 
           <label for="form-dueDate">Fälligkeit</label>
-          <input name="dueDate" id="form-dueDate" type="date" min="" required>
+          <input name="dueDate" id="form-dueDate" type="date">
 
           <label for="form-done">Erledigt</label>
           <input name="done" id="form-done" type="checkbox" value="true">
@@ -55,6 +55,7 @@
           <button id="app-form-action-save" type="submit" class="button button-primary">Save</button>
           <button id="app-form-action-saveAndClose" type="submit" class="button">Save & Close</button>
           <button id="app-form-action-list" type="button" class="button">Overview</button>
+          <button id="app-form-action-delete" type="button" class="button">Delete</button>
         </div>
       </form>
     </div>

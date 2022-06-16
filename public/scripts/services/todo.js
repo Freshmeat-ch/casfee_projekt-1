@@ -1,24 +1,28 @@
-import { Utils } from '../utils.js';
-
 export class Todo {
-  constructor(title, description, dueDate, id = null, createDate = new Date(), importance = 3, done = false) {
-    this.id = id || Utils.generateId();
+  constructor(title, description, dueDate = null, importance = 3, done = false, createDate = new Date(), id = null) {
     this.title = title;
     this.description = description;
     this.importance = parseInt(importance, 10) || 3;
     this.createDate = createDate || new Date();
-    this.dueDate = new Date(dueDate);
-    this.dueDate.setHours(0, 0, 0, 0);
-    this.done = done || false;
+    this.dueDate = dueDate;
+    if (dueDate !== null) {
+      this.dueDate = new Date(dueDate);
+      this.dueDate.setHours(0, 0, 0, 0);
+    } else {
+      this.dueDate = null;
+    }
+    this.done = done;
+    this.id = id;
   }
 
   state() {
     const offsetInDays = this.dueDateOffsetInDays();
     switch (true) {
-      case !this.done && offsetInDays < 0:
-        return 'overdue';
+      case !this.done && this.dueDate === null:
       case !this.done && offsetInDays >= 0:
         return 'pending';
+      case !this.done && offsetInDays < 0:
+        return 'overdue';
       default:
         return 'done';
     }
@@ -31,6 +35,7 @@ export class Todo {
   }
 
   dueDateAsTimestamp() {
+    if (this.dueDate === null) return 0;
     const dueDate = new Date(this.dueDate);
     return Math.floor(dueDate.getTime() / 1000);
   }
@@ -47,8 +52,10 @@ export class Todo {
 
   dueDateAsText() {
     switch (true) {
-      case this.state() === 'done':
+      case this.done === true:
         return 'Erledigt';
+      case this.dueDate === null:
+        return 'kein Datum';
       case this.dueDateOffsetInDays() < 0:
         return 'Überfällig';
       case this.dueDateOffsetInDays() === 0:
@@ -79,7 +86,6 @@ export class Todo {
 
   toJSON() {
     return {
-      id: this.id,
       title: this.title,
       description: this.description,
       importance: this.importance,

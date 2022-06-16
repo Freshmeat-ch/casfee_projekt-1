@@ -1,15 +1,14 @@
 import { TodoService } from '../services/todo-service.js';
-import { Utils } from '../utils.js';
+import { Todo } from '../services/todo.js';
 import { todoView } from '../views/todo-view.js';
 
-// TODO: (optional) make a delete function
-// TODO: make no due date possible
 // TODO: check the validation (currently on firefox the form validation errors are only shown once)
 // TODO: show a message when there is no todo
 
 export default class TodoController {
   constructor() {
     this.todoService = new TodoService();
+    this.todos = [];
 
     // sortings & filters defaults
     this.sortBy = 'dueDate';
@@ -34,6 +33,7 @@ export default class TodoController {
     this.buttonSwitchTheme = document.querySelector('button#app-actions-switchTheme');
     this.buttonForm = document.querySelector('button#app-actions-form');
     this.buttonList = document.querySelector('button#app-form-action-list');
+    this.buttonDelete = document.querySelector('button#app-form-action-delete');
     this.buttonSortByDefault = document.querySelector(`button[data-sort-by=${this.sortBy}]`);
     this.buttonFilterDone = document.querySelector('button[id=filterByDone]');
     this.buttonFilterOverdue = document.querySelector('button[id=filterByOverdue]');
@@ -43,65 +43,69 @@ export default class TodoController {
   }
 
   initEventHandlers() {
-    this.inputDueDate.addEventListener('click', (event) => {
-      // set the min date for the due date input
-      // !!! this is nasty when editing a todo only for the purpose to set it to done.
-      event.target.setAttribute('min', Utils.getDateTodayAsValue());
-    });
-
     this.buttonSwitchTheme.addEventListener('click', () => {
       this.body.classList.toggle('dark');
     });
 
-    this.buttonForm.addEventListener('click', () => {
+    this.buttonForm.addEventListener('click', async () => {
       this.clearForm();
       this.changeAction('form');
     });
 
-    this.buttonList.addEventListener('click', () => {
+    this.buttonList.addEventListener('click', async () => {
       this.clearForm();
-      this.changeAction('list');
+      await this.changeAction('list');
     });
 
-    this.form.addEventListener('submit', (event) => {
-      const todoFormData = new FormData(this.form);
-      const todoObject = Object.fromEntries(todoFormData);
-      const { todoId } = this.form.dataset;
+    this.buttonDelete.addEventListener('click', async () => {
+      const { id } = this.form.dataset;
+      await this.todoService.delete(id);
+      await this.changeAction('list');
+    });
 
-      if (todoId === '') {
+    this.form.addEventListener('submit', async (event) => {
+      const formData = new FormData(this.form);
+      const formDataEntries = Object.fromEntries(formData);
+      const todo = new Todo(formDataEntries.title, formDataEntries.description, formDataEntries.dueDate, formDataEntries.importance, formDataEntries.done);
+      const { id } = this.form.dataset;
+
+      if (id === '') {
         // create a new todo and update the form with the created id
-        const newTodo = this.todoService.add(todoObject);
+        const newTodo = await this.todoService.create(todo);
         this.updateForm(newTodo);
       } else {
-        // update the todo based on the todo id
-        this.todoService.update(todoId, todoObject);
+        // update the todo based on the id
+        await this.todoService.update(id, todo);
       }
 
       switch (event.submitter.id) {
         case 'app-form-action-saveAndClose':
           this.clearForm();
-          this.render();
-          this.changeAction('list');
+          await this.changeAction('list');
           break;
         default:
-          this.render(); // make sure the list view is updated with the changes
       }
     });
 
-    this.appListItemsContainer.addEventListener('click', (event) => {
-      const { todoId } = event.target.dataset;
+    this.appListItemsContainer.addEventListener('click', async (event) => {
+      const { id } = event.target.dataset;
       const { action } = event.target.dataset;
-      const todo = this.todoService.get(todoId);
-
-      switch (action) {
-        case 'done':
-          todo.done = !todo.done;
-          this.todoService.update(todoId, todo);
-          this.render();
-          break;
-        default:
-          this.updateForm(todo);
-          this.changeAction('form');
+      if (id && action) {
+        const todo = await this.todoService.get(id);
+        switch (action) {
+          case 'done':
+            todo.done = !todo.done;
+            this.todoService.update(id, todo);
+            this.todos = await this.todoService.getAll();
+            this.render();
+            break;
+          case 'edit':
+            this.updateForm(todo);
+            this.changeAction('form');
+            break;
+          default:
+          // do nothing
+        }
       }
     });
 
@@ -118,7 +122,7 @@ export default class TodoController {
           this.sortDirection = 'up'; // start sorting is up
         }
         button.dataset.sortDirection = this.sortDirection;
-        this.todoService.sortBy(this.sortBy, this.sortDirection);
+        this.todoService.sortBy(this.todos, this.sortBy, this.sortDirection);
         this.render();
       });
     });
@@ -147,7 +151,7 @@ export default class TodoController {
 
   initDefaultSortBy() {
     this.buttonSortByDefault.dataset.sortDirection = this.sortDirection;
-    this.todoService.sortBy(this.sortBy, this.sortDirection);
+    this.todoService.sortBy(this.todos, this.sortBy, this.sortDirection);
   }
 
   resetSortBy() {
@@ -157,45 +161,49 @@ export default class TodoController {
     });
   }
 
-  changeAction(action) {
+  async changeAction(action) {
+    switch (action) {
+      case 'list':
+        this.todos = await this.todoService.getAll();
+        this.render();
+        break;
+      default:
+    }
     this.appContainer.dataset.action = action;
   }
 
-  updateForm(todo) {
-    this.form.dataset.todoId = todo.id;
+  updateForm(item) {
+    const todo = new Todo(item.title, item.description, item.dueDate, item.importance, item.done, item.createDate, item._id);
+    this.form.dataset.id = todo.id;
     this.form.querySelector('input#form-title').value = todo.title;
     this.form.querySelector('textarea#form-description').innerHTML = todo.description;
     this.form.querySelector('select#form-importance').value = todo.importance;
-    this.form.querySelector('input#form-dueDate').value = todo.dueDateAsValue();
+    if (todo.dueDate !== null) this.form.querySelector('input#form-dueDate').value = todo.dueDateAsValue();
     this.form.querySelector('input#form-done').checked = todo.done;
   }
 
   clearForm() {
-    this.form.dataset.todoId = '';
+    this.form.dataset.id = '';
     this.form.reset();
     this.form.querySelector('textarea#form-description').innerHTML = '';
   }
 
-  // eslint-disable-next-line class-methods-use-this
   compileTodoTemplate(todo) {
     return todoView(todo);
   }
 
-  renderTodos(todos) {
+  render() {
     let html = '';
-    todos.forEach((todo) => {
+    this.todos.forEach((item) => {
+      const todo = new Todo(item.title, item.description, item.dueDate, item.importance, item.done, item.createDate, item._id);
       html += this.compileTodoTemplate(todo);
     });
-    return html;
-  }
 
-  render() {
-    this.todoService.sortBy(this.sortBy, this.sortDirection);
-    this.appListItemsContainer.innerHTML = this.renderTodos(this.todoService.todos);
+    this.appListItemsContainer.innerHTML = html;
   }
 
   async init() {
-    await this.todoService.load();
+    this.todos = await this.todoService.getAll();
     this.initDefaultSortBy();
     this.initDefaultFilterStates();
     this.initEventHandlers();
