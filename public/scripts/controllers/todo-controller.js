@@ -171,6 +171,7 @@ export default class TodoController {
 
   updateForm(item) {
     const todo = new Todo(item.title, item.description, item.dueDate, item.importance, item.done, item.createDate, item._id);
+    this.buttonDelete.style.display = '';
     this.form.dataset.id = todo.id;
     this.form.querySelector('input#form-title').value = todo.title;
     this.form.querySelector('textarea#form-description').innerHTML = todo.description;
@@ -180,6 +181,7 @@ export default class TodoController {
   }
 
   clearForm() {
+    this.buttonDelete.style.display = 'none';
     this.form.dataset.id = '';
     this.form.reset();
     this.form.querySelector('textarea#form-description').innerHTML = '';

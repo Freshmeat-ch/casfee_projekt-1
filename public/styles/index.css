@@ -20,12 +20,19 @@
   --color-default-dark: hsl(var(--color-default-h), var(--color-default-s), calc(var(--color-default-l) - var(--dark-percentage)));
   --color-default-light: hsl(var(--color-default-h), var(--color-default-s), calc(var(--color-default-l) + var(--light-percentage)));
 
-  --color-primary-h: 0;
-  --color-primary-s: 100%;
+  --color-primary-h: 300;
+  --color-primary-s: 50%;
   --color-primary-l: 50%;
   --color-primary: hsl(var(--color-primary-h), var(--color-primary-s), var(--color-primary-l));
   --color-primary-dark: hsl(var(--color-primary-h), var(--color-primary-s), calc(var(--color-primary-l) - var(--dark-percentage)));
   --color-primary-light: hsl(var(--color-primary-h), var(--color-primary-s), calc(var(--color-primary-l) + var(--light-percentage)));
+
+  --color-alert-h: 0;
+  --color-alert-s: 100%;
+  --color-alert-l: 50%;
+  --color-alert: hsl(var(--color-alert-h), var(--color-alert-s), var(--color-alert-l));
+  --color-alert-dark: hsl(var(--color-alert-h), var(--color-alert-s), calc(var(--color-alert-l) - var(--dark-percentage)));
+  --color-alert-light: hsl(var(--color-alert-h), var(--color-alert-s), calc(var(--color-alert-l) + var(--light-percentage)));
 
   --color-black-h: 0;
   --color-black-s: 0%;
@@ -114,6 +121,13 @@ body {
 }
 .button-primary:hover {
   background: var(--color-primary-light);
+}
+.button-alert {
+  background: var(--color-alert);
+  border-color: var(--color-alert-dark);
+}
+.button-alert:hover {
+  background: var(--color-alert-light);
 }
 
 .hide {
