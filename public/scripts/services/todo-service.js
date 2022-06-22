@@ -48,7 +48,23 @@ export class TodoService {
   }
 
   sortBy(todos, field, direction) {
-    const sortedTodos = todos.sort((a, b) => (a[field] > b[field] ? 1 : -1));
+    const sortedTodos = todos.sort((a, b) => {
+      switch (field) {
+        case 'title':
+          return a[field].localeCompare(b[field]);
+        default:
+          if (a[field] === b[field]) {
+            return 0;
+          }
+          if (a[field] === null) {
+            return 1;
+          }
+          if (b[field] === null) {
+            return -1;
+          }
+          return a[field] > b[field] ? 1 : -1;
+      }
+    });
     return direction === 'up' ? sortedTodos : sortedTodos.reverse();
   }
 }

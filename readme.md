@@ -2,6 +2,7 @@
 
 ### TODO:
 
+- hide the delete button when creating a new todo
 - show a loading overlay when loading
 - show a message when there is no todo
 - store the theme setting in the local storage
