@@ -1,6 +1,5 @@
 export class TodoService {
   async create(todo) {
-    console.log(todo);
     return fetch(`/todos/`, {
       method: 'POST',
       body: JSON.stringify(todo),

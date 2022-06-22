@@ -25,7 +25,8 @@
     "html-validator-cli": "^7.0.1",
     "prettier": "2.6.2",
     "stylelint": "^14.7.1",
-    "stylelint-config-standard": "^25.0.0"
+    "stylelint-config-standard": "^25.0.0",
+    "minimist": ">=1.2.6"
   },
   "dependencies": {
     "body-parser": "^1.20.0",
