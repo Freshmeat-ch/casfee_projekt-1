@@ -192,13 +192,15 @@ export default class TodoController {
   }
 
   render() {
-    let html = '';
-    this.todos.forEach((item) => {
-      const todo = new Todo(item.title, item.description, item.dueDate, item.importance, item.done, item.createDate, item._id);
-      html += this.compileTodoTemplate(todo);
-    });
+    if (this.todos.length) {
+      let html = '';
+      this.todos.forEach((item) => {
+        const todo = new Todo(item.title, item.description, item.dueDate, item.importance, item.done, item.createDate, item._id);
+        html += this.compileTodoTemplate(todo);
+      });
 
-    this.appListItemsContainer.innerHTML = html;
+      this.appListItemsContainer.innerHTML = html;
+    }
   }
 
   async init() {
