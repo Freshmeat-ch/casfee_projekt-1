@@ -1,5 +1,6 @@
 import { TodoService } from '../services/todo-service.js';
 import { Todo } from '../services/todo.js';
+import { emptyView } from '../views/empty-view.js';
 import { todoView } from '../views/todo-view.js';
 
 export default class TodoController {
@@ -18,6 +19,7 @@ export default class TodoController {
     // containers
     this.body = document.querySelector('body');
     this.appContainer = document.querySelector('div#app');
+    this.appListControls = document.querySelector('div#app-list-controls');
     this.appListItemsContainer = document.querySelector('div#app-list-items > ol');
 
     // forms
@@ -171,7 +173,7 @@ export default class TodoController {
 
   updateForm(item) {
     const todo = new Todo(item.title, item.description, item.dueDate, item.importance, item.done, item.createDate, item._id);
-    this.buttonDelete.style.display = '';
+    this.buttonDelete.classList.remove('hide');
     this.form.dataset.id = todo.id;
     this.form.querySelector('input#form-title').value = todo.title;
     this.form.querySelector('textarea#form-description').innerHTML = todo.description;
@@ -181,7 +183,7 @@ export default class TodoController {
   }
 
   clearForm() {
-    this.buttonDelete.style.display = 'none';
+    this.buttonDelete.classList.add('hide');
     this.form.dataset.id = '';
     this.form.reset();
     this.form.querySelector('textarea#form-description').innerHTML = '';
@@ -191,16 +193,23 @@ export default class TodoController {
     return todoView(todo);
   }
 
+  compileEmptyTemplate() {
+    return emptyView();
+  }
+
   render() {
+    let html = '';
     if (this.todos.length) {
-      let html = '';
+      this.appListControls.classList.remove('hide');
       this.todos.forEach((item) => {
         const todo = new Todo(item.title, item.description, item.dueDate, item.importance, item.done, item.createDate, item._id);
         html += this.compileTodoTemplate(todo);
       });
-
-      this.appListItemsContainer.innerHTML = html;
+    } else {
+      this.appListControls.classList.add('hide');
+      html += this.compileEmptyTemplate();
     }
+    this.appListItemsContainer.innerHTML = html;
   }
 
   async init() {

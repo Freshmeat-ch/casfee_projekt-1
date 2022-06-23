@@ -3,8 +3,9 @@
 ### TODO:
 
 - show a loading overlay when loading
-- show a message when there is no todo
 - store the theme setting in the local storage
+- store the sorting setting in the local storage
+- store the filter setting in the local storage
 - finalize css / theme
 - integrate a warning on delete
 - check the validation (currently on firefox the form validation errors are only shown once)

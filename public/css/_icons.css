@@ -1,0 +1,99 @@
+.icon::before {
+  font: var(--fa-font-solid);
+  display: inline-block;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+.icon-x2 {
+  font-size: 200%;
+}
+
+.icon-x3 {
+  font-size: 300%;
+}
+
+.icon-x4 {
+  font-size: 400%;
+}
+
+.icon-x5 {
+  font-size: 500%;
+}
+
+.icon-plus::before {
+  content: '\2b';
+}
+
+.icon-moon::before {
+  content: '\f186';
+}
+
+.icon-sun::before {
+  content: '\f185';
+}
+
+.icon-sort::before {
+  content: '\f0dc';
+}
+
+.icon-sort-down::before {
+  content: '\f0dd';
+}
+
+.icon-sort-up::before {
+  content: '\f0de';
+}
+
+.icon-filter-on::before {
+  content: '\f205';
+}
+
+.icon-filter-off::before {
+  content: '\f204';
+}
+
+.icon-edit::before {
+  content: '\f304';
+}
+
+.icon-done::before {
+  content: '\f00c';
+}
+
+.icon-party::before {
+  content: '\f79f';
+}
+
+.icon-importance-5::before {
+  color: var(--color-secondary-dark);
+  content: '\f004\00a0\f004\00a0\f004\00a0\f004\00a0\f004';
+}
+
+.icon-importance-4::before {
+  color: var(--color-secondary);
+  content: '\f004\00a0\f004\00a0\f004\00a0\f004\00a0';
+}
+
+.icon-importance-3::before {
+  color: var(--color-secondary-light);
+  content: '\f004\00a0\f004\00a0\f004\00a0';
+}
+
+.icon-importance-2::before {
+  color: var(--color-secondary-light);
+  content: '\f004\00a0\f004\00a0';
+}
+
+.icon-importance-1::before {
+  color: var(--color-secondary-light);
+  content: '\f004\00a0';
+}
+
+.icon-gradient::before {
+  background: -webkit-linear-gradient(92deg, #95d7e3, #eb76ff);
+  background-size: 600vw 600vw;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbowAnimation 5s linear infinite alternate;
+}

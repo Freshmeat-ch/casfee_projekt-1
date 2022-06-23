@@ -1,0 +1,104 @@
+label {
+  padding: var(--spacing) 0;
+  border: 2px solid trans;
+  border-color: transparent;
+  cursor: pointer;
+}
+
+form fieldset {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  gap: var(--spacing);
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+textarea,
+input,
+select {
+  border: 2px solid var(--color-theme-forms-border);
+  border-radius: calc(var(--spacing) / 2);
+  padding: var(--spacing);
+  color: var(--color-theme-forms-color);
+  background-color: var(--color-theme-forms-background);
+}
+
+textarea:focus,
+input:focus,
+select:focus {
+  outline: none !important;
+  box-shadow: 0 0 var(--spacing) var(--color-theme-forms-shadow);
+}
+
+textarea[required],
+input[required],
+select[required] {
+  border-color: var(--color-primary);
+}
+
+textarea[required]:focus,
+input[required]:focus,
+select[required]:focus {
+  outline: none !important;
+  box-shadow: 0 0 var(--spacing) var(--color-theme-forms-shadow);
+}
+
+input#form-done {
+  border: none;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+}
+
+input#form-done:focus {
+  outline: none !important;
+  box-shadow: none;
+}
+
+button {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: var(--font-size);
+  padding: var(--spacing) calc(2 * var(--spacing));
+  text-decoration: none;
+  border-style: solid;
+  cursor: pointer;
+}
+
+/* reset checkbox rendering*/
+input[type='checkbox'] {
+  appearance: none;
+  color: var(--color-theme-forms-checkbox-background);
+  position: relative;
+}
+
+input[type='checkbox']::before {
+  content: '';
+  display: inline-block;
+  border: 2px solid var(--color-theme-forms-border);
+  width: calc(3 * var(--spacing));
+  height: calc(3 * var(--spacing));
+  border-radius: calc(var(--spacing) / 2);
+}
+
+input[type='checkbox']:checked::before {
+  background: var(--color-theme-forms-checkbox-background);
+}
+
+input[type='checkbox']:checked::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(3 * var(--spacing) + 4px);
+  height: calc(3 * var(--spacing) + 4px);
+  font: var(--fa-font-solid);
+  display: inline-block;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  content: '\f00c';
+  color: var(--color-theme-forms-checkbox-color);
+  font-size: 100%;
+  line-height: calc(3 * var(--spacing) + 4px);
+  text-align: center;
+}

@@ -1,0 +1,93 @@
+.button {
+  color: var(--color-theme-button-color);
+  background: var(--color-theme-button-background);
+  border-color: var(--color-theme-button-border);
+  border-radius: calc(var(--spacing) / 2);
+}
+.button:hover {
+  background: var(--color-theme-button-backgroundHover);
+  border-color: var(--color-theme-button-borderHover);
+}
+.button-alert {
+  background: var(--color-alert);
+  border-color: var(--color-alert-dark);
+}
+.button-alert:hover {
+  background: var(--color-alert-light);
+}
+
+.button.button-hollow {
+  color: var(--color-theme-buttonHollow-color);
+  background: var(--color-theme-buttonHollow-background);
+  border-color: var(--color-theme-buttonHollow-border);
+}
+
+.button.button-hollow:hover {
+  background: var(--color-theme-buttonHollow-backgroundHover);
+}
+
+button.item-edit::after,
+button.item-done::after,
+button#app-actions-form::after,
+button#app-actions-switchTheme::after,
+button[data-sort-by]::after,
+button[data-filter-done-state]::after,
+button[data-filter-overdue-state]::after {
+  font: var(--fa-font-solid);
+  display: inline-block;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  margin: 0 0 0 var(--spacing);
+}
+
+button.item-edit::after {
+  content: '\f304';
+}
+
+button.item-done::after {
+  content: '\f00c';
+}
+
+button#app-actions-form::after {
+  content: '\2b';
+}
+
+button#app-actions-switchTheme::after {
+  content: '\f186';
+}
+
+button[data-sort-by]::after {
+  content: '\f0dc';
+}
+
+button[data-sort-direction='up']::after {
+  content: '\f0de';
+}
+
+button[data-sort-direction='down']::after {
+  content: '\f0dd';
+}
+
+button[data-filter-done-state='inactive']::after,
+button[data-filter-overdue-state='inactive']::after {
+  content: '\f204';
+}
+
+button[data-filter-done-state='active']::after,
+button[data-filter-overdue-state='active']::after {
+  content: '\f205';
+}
+
+button[data-filter-done-state='active'],
+button[data-filter-overdue-state='active'],
+button[data-sort-direction='up'],
+button[data-sort-direction='down'] {
+  background: var(--color-theme-button-background-active) !important;
+}
+
+button.button-hollow[data-filter-done-state='active'],
+button.button-hollow[data-filter-overdue-state='active'],
+button.button-hollow[data-sort-direction='up'],
+button.button-hollow[data-sort-direction='down'] {
+  background: var(--color-theme-buttonHollow-background-active) !important;
+}

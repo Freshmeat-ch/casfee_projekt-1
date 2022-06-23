@@ -14,72 +14,80 @@
 </head>
 
 <body>
-
-  <div id="app" data-action="list">
+  <header>
     <h1 class="logo">tuuduu</h1>
-    <div id="app-actions">
-      <button id="app-actions-form" class="button">Neues Todo erstellen</button>
-      <button id="app-actions-switchTheme" class="button">Theme wechseln</button>
-    </div>
-    <div id="app-form">
-      <form action="javascript:void(0);" method="post" data-id="">
-        <fieldset>
+  </header>
+  <main>
+    <div id="app" data-action="list">
+      <div id="app-actions">
+        <button id="app-actions-form" class="button">Todo erstellen</button>
+        <button id="app-actions-switchTheme" class="button">Theme wechseln</button>
+      </div>
+      <div id="app-form">
+        <form action="javascript:void(0);" method="post" data-id="">
+          <fieldset>
 
-          <label for="form-title">Titel</label>
-          <input name="title" id="form-title" type="text" value="" placeholder="Titel" maxlength="255" minlength="1"
-            required>
+            <label for="form-title">Titel</label>
+            <input name="title" id="form-title" type="text" value="" placeholder="Titel" maxlength="255" minlength="1"
+              required>
 
-          <label for="form-description">Description</label>
-          <textarea name="description" id="form-description" placeholder="Beschreibung was gemacht werden muss."
-            minlength="10" required></textarea>
+            <label for="form-description">Beschreibung</label>
+            <textarea name="description" id="form-description"
+              placeholder="Beschreibung was gemacht werden muss."></textarea>
 
-          <label for="form-importance">Wichtigkeit</label>
-          <select name="importance" id="form-importance">
-            <option value="1">Sehr Tief</option>
-            <option value="2">Tief</option>
-            <option value="3" selected>Normal</option>
-            <option value="4">Hoch</option>
-            <option value="5">Sehr Hoch</option>
-          </select>
+            <label for="form-importance">Wichtigkeit</label>
+            <select name="importance" id="form-importance">
+              <option value="1">Sehr Tief</option>
+              <option value="2">Tief</option>
+              <option value="3" selected>Normal</option>
+              <option value="4">Hoch</option>
+              <option value="5">Sehr Hoch</option>
+            </select>
 
-          <label for="form-dueDate">Fälligkeit</label>
-          <input name="dueDate" id="form-dueDate" type="date">
+            <label for="form-dueDate">Fälligkeit</label>
+            <input name="dueDate" id="form-dueDate" type="date">
 
-          <label for="form-done">Erledigt</label>
-          <input name="done" id="form-done" type="checkbox" value="true">
-
-        </fieldset>
-        <div id="app-form-action">
-          <button id="app-form-action-save" type="submit" class="button button-primary">Save</button>
-          <button id="app-form-action-saveAndClose" type="submit" class="button">Save & Close</button>
-          <button id="app-form-action-list" type="button" class="button">Overview</button>
-          <button id="app-form-action-delete" type="button" class="button button-alert">Delete</button>
+            <label for="form-done">Erledigt</label>
+            <div>
+              <input name="done" id="form-done" type="checkbox" value="true">
+            </div>
+          </fieldset>
+          <div id="app-form-action">
+            <button id="app-form-action-save" type="submit" class="button">Speichern</button>
+            <button id="app-form-action-saveAndClose" type="submit" class="button">Speichern &amp; Schliessen</button>
+            <button id="app-form-action-list" type="button" class="button">zur &Uuml;bersicht</button>
+            <button id="app-form-action-delete" type="button" class="button button-alert">L&ouml;schen</button>
+          </div>
+        </form>
+      </div>
+      <div id="app-list">
+        <div id="app-list-controls" class="hide">
+          <div id="app-list-controls-sortings">
+            <button id="sortByTitle" type="button" class="button button-hollow" data-sort-by="title"
+              data-sort-direction="">Titel</button>
+            <button id="sortByDueDate" type="button" class="button button-hollow" data-sort-by="dueDate"
+              data-sort-direction="">Fälligkeit</button>
+            <button id="sortByImportance" type="button" class="button button-hollow" data-sort-by="importance"
+              data-sort-direction="">Wichtigkeit</button>
+            <button id="sortByCreateDate" type="button" class="button button-hollow" data-sort-by="createDate"
+              data-sort-direction="">Erstelldatum</button>
+          </div>
+          <div id="app-list-controls-filters">
+            <button id="filterByDone" type="button" class="button button-hollow" data-filter-done-state="">Erledigte
+              ausblenden</button>
+            <button id="filterByOverdue" type="button" class="button button-hollow" data-filter-overdue-state="">Nur
+              Überfällige</button>
+          </div>
         </div>
-      </form>
-    </div>
-    <div id="app-list">
-      <div id="app-list-controls">
-        <button id="sortByTitle" type="button" class="button" data-sort-by="title" data-sort-direction="">Nach
-          Titel</button>
-        <button id="sortByDueDate" type="button" class="button" data-sort-by="dueDate" data-sort-direction="">Nach
-          Fälligkeit</button>
-        <button id="sortByImportance" type="button" class="button" data-sort-by="importance" data-sort-direction="">Nach
-          Wichtigkeit</button>
-        <button id="sortByCreateDate" type="button" class="button" data-sort-by="createDate" data-sort-direction="">Nach
-          Erstelldatum</button>
-        <button id="filterByDone" type="button" class="button" data-filter-done-state="">Erledigte
-          ausblenden</button>
-        <button id="filterByOverdue" type="button" class="button" data-filter-overdue-state="">Nur Überfällige
-          anzeigen</button>
-      </div>
-
-      <div id="app-list-items">
-        <ol>
-          <li class="no-todos">Keine Todos</li>
-        </ol>
+        <div id="app-list-items">
+          <ol></ol>
+        </div>
       </div>
     </div>
-  </div>
+  </main>
+  <footer>
+    &copy; <a href="https://pixelarium.ch">Cornel Widmer</a>&emsp;&dash;&emsp;CAS-FEE 2022, Ostschweizer Fachhochschule
+  </footer>
 
 </body>
 

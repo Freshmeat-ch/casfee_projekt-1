@@ -11,7 +11,16 @@ export class Todo {
     } else {
       this.dueDate = null;
     }
-    this.done = done === 'true';
+    // ugly but working when creating a todo that is done
+    if (typeof done === 'string') {
+      if (done === 'false') {
+        this.done = false;
+      } else {
+        this.done = true;
+      }
+    } else if (typeof done === 'boolean') {
+      this.done = done;
+    }
     this.id = id;
   }
 

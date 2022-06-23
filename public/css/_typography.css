@@ -3,3 +3,17 @@
   --font-family: 'Fira Sans', sans-serif;
   --font-size: 100%;
 }
+
+body,
+textarea,
+input,
+select {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-weight: 400;
+  font-smooth: always;
+}
+
+p.text-center {
+  text-align: center;
+}
