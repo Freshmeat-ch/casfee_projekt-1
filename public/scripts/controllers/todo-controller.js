@@ -42,6 +42,8 @@ export default class TodoController {
     this.buttonSortByDefault = document.querySelector(`button[data-sort-by=${this.sortBy}]`);
     this.buttonFilterDone = document.querySelector('button[id=filterByDone]');
     this.buttonFilterOverdue = document.querySelector('button[id=filterByOverdue]');
+    this.buttonSave = document.querySelector('button[id=app-form-action-save]');
+    this.buttonSaveAndClose = document.querySelector('button[id=app-form-action-saveAndClose]');
 
     // buttons: all
     this.buttonsSortBy = document.querySelectorAll('button[id^=sortBy]');
@@ -195,6 +197,8 @@ export default class TodoController {
 
   updateForm(item) {
     const todo = new Todo(item.title, item.description, item.dueDate, item.importance, item.done, item.createDate, item._id);
+    this.buttonSave.innerHTML = 'Speichern';
+    this.buttonSaveAndClose.innerHTML = 'Speichern &amp; Schliessen';
     this.buttonDelete.classList.remove('hide');
     this.form.dataset.id = todo.id;
     this.form.querySelector('input#form-title').value = todo.title;
@@ -206,6 +210,8 @@ export default class TodoController {
 
   clearForm() {
     this.buttonDelete.classList.add('hide');
+    this.buttonSave.innerHTML = 'Erstellen';
+    this.buttonSaveAndClose.innerHTML = 'Erstellen &amp; Schliessen';
     this.form.dataset.id = '';
     this.form.reset();
     this.form.querySelector('textarea#form-description').innerHTML = '';
