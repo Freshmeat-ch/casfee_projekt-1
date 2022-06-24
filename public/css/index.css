@@ -77,6 +77,9 @@ div#app-list-controls {
   margin: calc(2 * var(--spacing)) 0;
 }
 
+div#app-form-action {
+  margin-top: calc(2 * var(--spacing));
+}
 /** 
  * SORTINGS & FILTERS
  */

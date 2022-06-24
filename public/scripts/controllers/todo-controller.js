@@ -65,9 +65,11 @@ export default class TodoController {
     });
 
     this.buttonDelete.addEventListener('click', async () => {
-      const { id } = this.form.dataset;
-      await this.todoService.delete(id);
-      await this.changeAction('list');
+      if (window.confirm('Möchten Sie dieses Todo wirklich löschen?')) {
+        const { id } = this.form.dataset;
+        await this.todoService.delete(id);
+        await this.changeAction('list');
+      }
     });
 
     this.form.addEventListener('submit', async (event) => {
