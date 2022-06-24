@@ -66,27 +66,22 @@
 }
 
 .icon-importance-5::before {
-  color: var(--color-secondary-dark);
   content: '\f004\00a0\f004\00a0\f004\00a0\f004\00a0\f004';
 }
 
 .icon-importance-4::before {
-  color: var(--color-secondary);
   content: '\f004\00a0\f004\00a0\f004\00a0\f004\00a0';
 }
 
 .icon-importance-3::before {
-  color: var(--color-secondary-light);
   content: '\f004\00a0\f004\00a0\f004\00a0';
 }
 
 .icon-importance-2::before {
-  color: var(--color-secondary-light);
   content: '\f004\00a0\f004\00a0';
 }
 
 .icon-importance-1::before {
-  color: var(--color-secondary-light);
   content: '\f004\00a0';
 }
 

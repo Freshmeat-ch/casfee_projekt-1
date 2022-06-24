@@ -23,7 +23,7 @@ body {
 }
 
 footer {
-  padding: calc(3 * var(--spacing)) 0 0 0;
+  padding: calc(3 * var(--spacing)) 0;
   margin: auto 0 0 0;
 }
 
@@ -128,7 +128,7 @@ ol {
 }
 
 ol li.item:hover {
-  background-color: var(--color-theme-listItem-hover);
+  background-color: var(--color-theme-listItem-backgroundHover);
 }
 
 ol li.item {
@@ -138,7 +138,7 @@ ol li.item {
   grid-template-areas:
     'dueDate title edit'
     'importance description done';
-  border-bottom: 1px solid var(--color-secondary-light);
+  border-bottom: 1px solid var(--color-secondary-dark);
   gap: var(--spacing);
   padding: var(--spacing);
 }
@@ -150,15 +150,14 @@ ol[data-filter-done='yes'] li.item[data-state='done'] {
 ol[data-filter-overdue='yes'] li.item:not([data-state='overdue']) {
   display: none;
 }
-/* 
+
 ol li.item[data-state='overdue'] {
-  background-color: var(--color-secondary-ultradark);
-  color: var(--color-white);
+  background-color: var(--color-theme-listItem-overdue-background);
 }
 
 ol li.item[data-state='done'] {
-  background-color: var(--color-secondary-ultralight);
-} */
+  background-color: var(--color-theme-listItem-done-background);
+}
 
 ol li.item[data-state='done'] button.item-done::after {
   content: '\f2ea';
@@ -203,6 +202,7 @@ ol li.no-todos {
 
 span.item-importance {
   font-size: 100%;
+  color: var(--color-secondary);
 }
 
 button.item-edit {
@@ -226,17 +226,3 @@ button.item-done {
 button.item-done:hover {
   color: var(--color-theme-listItem-buttonHover-color);
 }
-/* 
-ol li.item[data-state='overdue'] button.item-done {
-  color: var(--color-white);
-}
-ol li.item[data-state='overdue'] button.item-done:hover {
-  color: var(--color-black);
-}
-
-ol li.item[data-state='overdue'] button.item-edit {
-  color: var(--color-white);
-}
-ol li.item[data-state='overdue'] button.item-edit:hover {
-  color: var(--color-black);
-} */

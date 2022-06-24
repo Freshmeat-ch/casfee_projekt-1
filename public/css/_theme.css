@@ -7,15 +7,19 @@ body.dark {
   --color-theme-button-backgroundHover: var(--color-primary-ultradark);
   --color-theme-button-background-active: var(--color-primary-dark);
   --color-theme-button-border: var(--color-primary-light);
+  --color-theme-button-borderHover: var(--color-primary-light);
 
   --color-theme-buttonHollow-color: var(--color-white);
   --color-theme-buttonHollow-background: var(--color-black);
-  --color-theme-buttonHollow-backgroundHover: var(--color-primary-ultradark);
-  --color-theme-buttonHollow-background-active: var(--color-primary-dark);
-  --color-theme-buttonHollow-border: var(--color-primary);
+  --color-theme-buttonHollow-backgroundHover: var(--color-primary-dark);
+  --color-theme-buttonHollow-background-active: var(--color-primary);
+  --color-theme-buttonHollow-border: var(--color-primary-light);
+  --color-theme-buttonHollow-borderHover: var(--color-primary-light);
 
-  --color-theme-listItem-hover: var(--color-secondary-ultradark);
+  --color-theme-listItem-backgroundHover: var(--color-secondary-ultradark);
   --color-theme-listItem-buttonHover-color: var(--color-white);
+  --color-theme-listItem-done-background: var(--color-secondary-ultradark);
+  --color-theme-listItem-overdue-background: var(--color-secondary-mediumdark);
 
   --color-theme-forms-color: var(--color-white);
   --color-theme-forms-border: var(--color-white);

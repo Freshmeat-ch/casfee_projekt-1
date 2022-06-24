@@ -1,7 +1,9 @@
 :root {
   --light-percentage: 20%;
+  --mediumlight-percentage: 37%;
+  --ultralight-percentage: 47%;
   --dark-percentage: 20%;
-  --ultralight-percentage: 40%;
+  --mediumdark-percentage: 30%;
   --ultradark-percentage: 40%;
 
   --body-color: rgb(255, 255, 255);
@@ -20,8 +22,10 @@
   --color-primary-l: 50%;
   --color-primary: hsl(var(--color-primary-h), var(--color-primary-s), var(--color-primary-l));
   --color-primary-dark: hsl(var(--color-primary-h), var(--color-primary-s), calc(var(--color-primary-l) - var(--dark-percentage)));
+  --color-primary-mediumdark: hsl(var(--color-primary-h), var(--color-primary-s), calc(var(--color-primary-l) - var(--mediumdark-percentage)));
   --color-primary-ultradark: hsl(var(--color-primary-h), var(--color-primary-s), calc(var(--color-primary-l) - var(--ultradark-percentage)));
   --color-primary-light: hsl(var(--color-primary-h), var(--color-primary-s), calc(var(--color-primary-l) + var(--light-percentage)));
+  --color-primary-mediumlight: hsl(var(--color-primary-h), var(--color-primary-s), calc(var(--color-primary-l) + var(--mediumlight-percentage)));
   --color-primary-ultralight: hsl(var(--color-primary-h), var(--color-primary-s), calc(var(--color-primary-l) + var(--ultralight-percentage)));
 
   --color-secondary-h: 300;
@@ -29,8 +33,10 @@
   --color-secondary-l: 50%;
   --color-secondary: hsl(var(--color-secondary-h), var(--color-secondary-s), var(--color-secondary-l));
   --color-secondary-dark: hsl(var(--color-secondary-h), var(--color-secondary-s), calc(var(--color-secondary-l) - var(--dark-percentage)));
-  --color-secondary-ultradark: hsl(var(--color-secondary-h), var(--color-secondary-s), calc(var(--color-secondary-l) - var(--dark-percentage)));
+  --color-secondary-mediumdark: hsl(var(--color-secondary-h), var(--color-secondary-s), calc(var(--color-secondary-l) - var(--mediumdark-percentage)));
+  --color-secondary-ultradark: hsl(var(--color-secondary-h), var(--color-secondary-s), calc(var(--color-secondary-l) - var(--ultradark-percentage)));
   --color-secondary-light: hsl(var(--color-secondary-h), var(--color-secondary-s), calc(var(--color-secondary-l) + var(--light-percentage)));
+  --color-secondary-mediumlight: hsl(var(--color-secondary-h), var(--color-secondary-s), calc(var(--color-secondary-l) + var(--mediumlight-percentage)));
   --color-secondary-ultralight: hsl(var(--color-secondary-h), var(--color-secondary-s), calc(var(--color-secondary-l) + var(--ultralight-percentage)));
 
   --color-alert-h: 0;
@@ -78,7 +84,7 @@
   --color-theme-buttonHollow-border: var(--color-primary-dark);
   --color-theme-buttonHollow-borderHover: var(--color-primary-dark);
 
-  --color-theme-listItem-hover: var(--color-secondary-ultralight);
+  --color-theme-listItem-backgroundHover: var(--color-secondary-ultralight);
   --color-theme-listItem-button-color: var(--color-secondary-light);
   --color-theme-listItem-buttonHover-color: var(--color-black);
 
@@ -88,4 +94,7 @@
   --color-theme-forms-shadow: var(--color-black);
   --color-theme-forms-checkbox-background: var(--color-primary);
   --color-theme-forms-checkbox-color: var(--color-white);
+
+  --color-theme-listItem-done-background: var(--color-secondary-ultralight);
+  --color-theme-listItem-overdue-background: var(--color-secondary-mediumlight);
 }
