@@ -1,20 +1,26 @@
 import { TodoService } from '../services/todo-service.js';
+import { SettingsService } from '../services/settings-service.js';
 import { Todo } from '../services/todo.js';
 import { emptyView } from '../views/empty-view.js';
 import { todoView } from '../views/todo-view.js';
 
 export default class TodoController {
   constructor() {
+    // todos
     this.todoService = new TodoService();
     this.todos = [];
 
+    // settings
+    this.settingsService = new SettingsService();
+    this.settingTheme = this.settingsService.getTheme() || 'light';
+
     // sortings & filters defaults
-    this.sortBy = 'dueDate';
-    this.sortDirection = 'up';
-    this.filterDone = 'no';
-    this.filterDoneState = 'inactive';
-    this.filterOverdue = 'no';
-    this.filterOverdueState = 'inactive';
+    this.sortBy = this.settingsService.getSorting() ? this.settingsService.getSorting().sortBy : 'dueDate';
+    this.sortDirection = this.settingsService.getSorting() ? this.settingsService.getSorting().sortDirection : 'up';
+    this.filterDone = this.settingsService.getFilterDone() ? this.settingsService.getFilterDone().filterDone : 'no';
+    this.filterDoneState = this.settingsService.getFilterDone() ? this.settingsService.getFilterDone().filterDoneState : 'inactive';
+    this.filterOverdue = this.settingsService.getFilterOverdue() ? this.settingsService.getFilterOverdue().filterOverdue : 'no';
+    this.filterOverdueState = this.settingsService.getFilterOverdue() ? this.settingsService.getFilterOverdue().filterOverdueState : 'inactive';
 
     // containers
     this.body = document.querySelector('body');
@@ -43,7 +49,9 @@ export default class TodoController {
 
   initEventHandlers() {
     this.buttonSwitchTheme.addEventListener('click', () => {
-      this.body.classList.toggle('dark');
+      this.settingTheme = this.settingTheme === 'dark' ? 'light' : 'dark';
+      this.settingsService.setTheme(this.settingTheme);
+      this.switchTheme();
     });
 
     this.buttonForm.addEventListener('click', async () => {
@@ -121,6 +129,7 @@ export default class TodoController {
           this.sortDirection = 'up'; // start sorting is up
         }
         button.dataset.sortDirection = this.sortDirection;
+        this.settingsService.setSorting(this.sortBy, this.sortDirection);
         this.todoService.sortBy(this.todos, this.sortBy, this.sortDirection);
         this.render();
       });
@@ -131,6 +140,7 @@ export default class TodoController {
       this.filterDoneState = this.filterDoneState === 'active' ? 'inactive' : 'active';
       this.appListItemsContainer.dataset.filterDone = this.filterDone;
       this.buttonFilterDone.dataset.filterDoneState = this.filterDoneState;
+      this.settingsService.setFilterDone(this.filterDone, this.filterDoneState);
     });
 
     this.buttonFilterOverdue.addEventListener('click', () => {
@@ -138,7 +148,17 @@ export default class TodoController {
       this.filterOverdueState = this.filterOverdueState === 'active' ? 'inactive' : 'active';
       this.appListItemsContainer.dataset.filterOverdue = this.filterOverdue;
       this.buttonFilterOverdue.dataset.filterOverdueState = this.filterOverdueState;
+      this.settingsService.setFilterOverdue(this.filterOverdue, this.filterOverdueState);
     });
+  }
+
+  initTheme() {
+    this.switchTheme();
+  }
+
+  initDefaultSortBy() {
+    this.buttonSortByDefault.dataset.sortDirection = this.sortDirection;
+    this.todoService.sortBy(this.todos, this.sortBy, this.sortDirection);
   }
 
   initDefaultFilterStates() {
@@ -148,9 +168,9 @@ export default class TodoController {
     this.buttonFilterOverdue.dataset.filterOverdueState = this.filterOverdueState;
   }
 
-  initDefaultSortBy() {
-    this.buttonSortByDefault.dataset.sortDirection = this.sortDirection;
-    this.todoService.sortBy(this.todos, this.sortBy, this.sortDirection);
+  switchTheme() {
+    this.body.className = '';
+    this.body.classList.add(this.settingTheme);
   }
 
   resetSortBy() {
@@ -214,6 +234,7 @@ export default class TodoController {
 
   async init() {
     this.todos = await this.todoService.getAll();
+    this.initTheme();
     this.initDefaultSortBy();
     this.initDefaultFilterStates();
     this.initEventHandlers();
