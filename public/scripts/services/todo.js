@@ -1,7 +1,8 @@
 export class Todo {
   constructor(title, description, dueDate = null, importance = 3, done = false, createDate = new Date(), id = null) {
-    this.title = title;
-    this.description = description;
+    // add a basic sanitation for title and description
+    this.title = this.stripHtml(title);
+    this.description = this.stripHtml(description);
     this.importance = parseInt(importance, 10) || 3;
     this.createDate = createDate || new Date();
     this.dueDate = dueDate;
@@ -11,17 +12,13 @@ export class Todo {
     } else {
       this.dueDate = null;
     }
-    // ugly but working when creating a todo that is done
-    if (typeof done === 'string') {
-      if (done === 'false') {
-        this.done = false;
-      } else {
-        this.done = true;
-      }
-    } else if (typeof done === 'boolean') {
-      this.done = done;
-    }
+    this.done = done;
     this.id = id;
+  }
+
+  stripHtml(string) {
+    const doc = new DOMParser().parseFromString(string, 'text/html');
+    return doc.body.textContent || '';
   }
 
   state() {

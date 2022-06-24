@@ -77,7 +77,9 @@ export default class TodoController {
     this.form.addEventListener('submit', async (event) => {
       const formData = new FormData(this.form);
       const formDataEntries = Object.fromEntries(formData);
-      const todo = new Todo(formDataEntries.title, formDataEntries.description, formDataEntries.dueDate, formDataEntries.importance, formDataEntries.done);
+      // eslint-disable-next-line no-unneeded-ternary
+      const todoDone = formDataEntries.done === 'true' ? true : false;
+      const todo = new Todo(formDataEntries.title, formDataEntries.description, formDataEntries.dueDate, formDataEntries.importance, todoDone);
       const { id } = this.form.dataset;
 
       if (id === '') {
@@ -134,7 +136,6 @@ export default class TodoController {
         }
         button.dataset.sortDirection = this.sortDirection;
         this.settingsService.setSorting(this.sortBy, this.sortDirection);
-        this.todoService.sortBy(this.todos, this.sortBy, this.sortDirection);
         this.render();
       });
     });
@@ -162,7 +163,6 @@ export default class TodoController {
 
   initDefaultSortBy() {
     this.buttonSortByDefault.dataset.sortDirection = this.sortDirection;
-    this.todoService.sortBy(this.todos, this.sortBy, this.sortDirection);
   }
 
   initDefaultFilterStates() {
@@ -228,6 +228,7 @@ export default class TodoController {
   render() {
     let html = '';
     if (this.todos.length) {
+      this.todoService.sortBy(this.todos, this.sortBy, this.sortDirection);
       this.appListControls.classList.remove('hide');
       this.todos.forEach((item) => {
         const todo = new Todo(item.title, item.description, item.dueDate, item.importance, item.done, item.createDate, item._id);
