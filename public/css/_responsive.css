@@ -3,6 +3,13 @@ div#app-actions {
   justify-content: space-between;
 }
 
+div#app-form-action {
+  margin-top: calc(2 * var(--spacing));
+  display: grid;
+  grid-template-columns: auto auto auto 1fr auto;
+  gap: var(--spacing);
+}
+
 div#app-list-controls-sortings {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -21,6 +28,9 @@ div#app-list-controls-filters {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--spacing);
+  }
+  div#app-form-action {
+    grid-template-columns: auto;
   }
   div#app-list-controls-sortings {
     grid-template-columns: 1fr 1fr;

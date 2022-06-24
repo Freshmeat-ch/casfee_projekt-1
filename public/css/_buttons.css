@@ -11,6 +11,7 @@
 .button-alert {
   background: var(--color-alert);
   border-color: var(--color-alert-dark);
+  color: var(--color-white);
 }
 .button-alert:hover {
   background: var(--color-alert-light);
