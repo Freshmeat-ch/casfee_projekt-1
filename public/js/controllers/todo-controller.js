@@ -1,5 +1,6 @@
 import { TodoService } from '../services/todo-service.js';
 import { SettingsService } from '../services/settings-service.js';
+import { AnimationService } from '../services/animation-service.js';
 import { Todo } from '../services/todo.js';
 import { emptyView } from '../views/empty-view.js';
 import { todoView } from '../views/todo-view.js';
@@ -13,6 +14,9 @@ export default class TodoController {
     // settings
     this.settingsService = new SettingsService();
     this.settingTheme = this.settingsService.getTheme() || 'light';
+
+    // animations
+    this.animationService = new AnimationService();
 
     // sortings & filters defaults
     this.sortBy = this.settingsService.getSorting() ? this.settingsService.getSorting().sortBy : 'dueDate';
@@ -111,6 +115,9 @@ export default class TodoController {
             this.todoService.update(id, todo);
             this.todos = await this.todoService.getAll();
             this.render();
+            if (todo.done) {
+              this.animationService.shootConfetti(event);
+            }
             break;
           case 'edit':
             this.updateForm(todo);
@@ -146,6 +153,7 @@ export default class TodoController {
       this.appListItemsContainer.dataset.filterDone = this.filterDone;
       this.buttonFilterDone.dataset.filterDoneState = this.filterDoneState;
       this.settingsService.setFilterDone(this.filterDone, this.filterDoneState);
+      this.render();
     });
 
     this.buttonFilterOverdue.addEventListener('click', () => {
@@ -154,6 +162,7 @@ export default class TodoController {
       this.appListItemsContainer.dataset.filterOverdue = this.filterOverdue;
       this.buttonFilterOverdue.dataset.filterOverdueState = this.filterOverdueState;
       this.settingsService.setFilterOverdue(this.filterOverdue, this.filterOverdueState);
+      this.render();
     });
   }
 
@@ -222,11 +231,23 @@ export default class TodoController {
   }
 
   compileEmptyTemplate() {
+    this.animationService.shootConfetti(this.appListItemsContainer);
     return emptyView();
+  }
+
+  checkIfAllTodosAreHidden() {
+    const listItems = this.appListItemsContainer.querySelectorAll('li');
+    let visibleListItems = listItems.length;
+    listItems.forEach((element) => {
+      if (window.getComputedStyle(element).display === 'none') visibleListItems--;
+    });
+    if (visibleListItems === 0) return true;
+    return false;
   }
 
   render() {
     let html = '';
+
     if (this.todos.length) {
       this.todoService.sortBy(this.todos, this.sortBy, this.sortDirection);
       this.appListControls.classList.remove('hide');
@@ -239,6 +260,11 @@ export default class TodoController {
       html += this.compileEmptyTemplate();
     }
     this.appListItemsContainer.innerHTML = html;
+
+    // we check if there are no visible todos (visibility is controlled by css)
+    if (this.checkIfAllTodosAreHidden()) {
+      this.appListItemsContainer.innerHTML = this.compileEmptyTemplate();
+    }
   }
 
   async init() {

@@ -26,3 +26,7 @@ body.dark {
   --color-theme-forms-background: var(--color-black);
   --color-theme-forms-shadow: var(--color-white);
 }
+
+body.dark button#app-actions-switchTheme::after {
+  content: '\f185';
+}
