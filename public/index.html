@@ -14,7 +14,7 @@
     rel="stylesheet">
 </head>
 
-<body>
+<body class="blur">
   <header>
     <h1 class="logo">tuuduu</h1>
   </header>
@@ -60,6 +60,14 @@
             <div></div>
             <button id="app-form-action-delete" type="button" class="button button-alert">L&ouml;schen</button>
           </div>
+          <dialog id="app-form-action-deleteDialog">
+            <div>
+              <p>Dieses Todo wirklich löschen?</p>
+              <button id="app-form-action-deleteDialog-cancel" type="button" class="button">Abbrechen</button>
+              <button id="app-form-action-deleteDialog-confirm" type="button"
+                class="button button-alert">Bestätigen</button>
+            </div>
+          </dialog>
         </form>
       </div>
       <div id="app-list">

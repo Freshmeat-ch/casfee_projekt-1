@@ -1,0 +1,34 @@
+dialog {
+  background: var(--color-theme-body-background);
+  border: none;
+  border-radius: var(--spacing);
+  padding: calc(3 * var(--spacing));
+  box-shadow: 0 0 calc(2 * var(--spacing)) var(--color-theme-forms-shadow);
+}
+
+dialog::backdrop {
+  backdrop-filter: blur(2px); /* not supported in firefox < 103 */
+  background-color: rgba(255, 255, 255, 0.66); /* css var() doesnt work here */
+}
+
+dialog#app-form-action-deleteDialog > div {
+  display: grid;
+  gap: var(--spacing);
+  grid-template-areas:
+    'text text'
+    'cancel confirm';
+}
+
+dialog#app-form-action-deleteDialog > div > p {
+  grid-area: text;
+  color: var(--color-theme-font-color);
+  /* margin: 0 0 var(--spacing) 0; */
+}
+
+button#app-form-action-deleteDialog-cancel {
+  grid-area: cancel;
+}
+
+button#app-form-action-deleteDialog-confirm {
+  grid-area: confirm;
+}

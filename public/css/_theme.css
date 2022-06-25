@@ -1,20 +1,27 @@
 body.dark {
-  --body-color: var(--color-black);
-  --font-color: var(--color-white);
+  --color-theme-body-background: var(--color-grey-ultradark);
+  --color-theme-font-color: var(--color-white);
 
   --color-theme-button-color: var(--color-white);
   --color-theme-button-background: var(--color-primary);
-  --color-theme-button-backgroundHover: var(--color-primary-ultradark);
-  --color-theme-button-background-active: var(--color-primary-dark);
+  --color-theme-button-backgroundHover: var(--color-primary-mediumdark);
+  --color-theme-button-background-active: var(--color-primary-mediumdark);
   --color-theme-button-border: var(--color-primary-light);
   --color-theme-button-borderHover: var(--color-primary-light);
 
   --color-theme-buttonHollow-color: var(--color-white);
-  --color-theme-buttonHollow-background: var(--color-black);
-  --color-theme-buttonHollow-backgroundHover: var(--color-primary-dark);
-  --color-theme-buttonHollow-background-active: var(--color-primary);
+  --color-theme-buttonHollow-background: var(--color-theme-body-background);
+  --color-theme-buttonHollow-backgroundHover: var(--color-primary-mediumdark);
+  --color-theme-buttonHollow-background-active: var(--color-primary-mediumdark);
   --color-theme-buttonHollow-border: var(--color-primary-light);
   --color-theme-buttonHollow-borderHover: var(--color-primary-light);
+
+  --color-theme-buttonAlert-color: var(--color-white);
+  --color-theme-buttonAlert-background: var(--color-alert);
+  --color-theme-buttonAlert-backgroundHover: var(--color-alert-dark);
+  --color-theme-buttonAlert-background-active: var(--color-alert-dark);
+  --color-theme-buttonAlert-border: var(--color-alert-light);
+  --color-theme-buttonAlert-borderHover: var(--color-alert-light);
 
   --color-theme-listItem-backgroundHover: var(--color-secondary-ultradark);
   --color-theme-listItem-buttonHover-color: var(--color-white);
@@ -23,10 +30,14 @@ body.dark {
 
   --color-theme-forms-color: var(--color-white);
   --color-theme-forms-border: var(--color-white);
-  --color-theme-forms-background: var(--color-black);
-  --color-theme-forms-shadow: var(--color-white);
+  --color-theme-forms-background: var(--color-theme-body-background);
+  --color-theme-forms-shadow: var(--color-white-a);
 }
 
 body.dark button#app-actions-switchTheme::after {
   content: '\f185';
+}
+
+body.dark dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.66); /* css var() doesnt work here */
 }

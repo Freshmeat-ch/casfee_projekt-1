@@ -5,6 +5,7 @@
 @import url('./_icons.css');
 @import url('./_forms.css');
 @import url('./_buttons.css');
+@import url('./_dialogs.css');
 @import url('./_theme.css');
 @import url('./_responsive.css');
 
@@ -18,36 +19,13 @@ body {
   height: 100vh;
   margin: 0;
   padding: calc(3 * var(--spacing));
-  background-color: var(--body-color);
-  color: var(--font-color);
+  background-color: var(--color-theme-body-background);
+  color: var(--color-theme-font-color);
 }
 
 footer {
-  padding: calc(3 * var(--spacing)) 0;
+  padding: calc(3 * var(--spacing)) 0 0 0;
   margin: auto 0 0 0;
-}
-
-.padding-1 {
-  padding: var(--spacing);
-}
-.padding-2 {
-  padding: calc(2 * var(--spacing));
-}
-.padding-3 {
-  padding: calc(3 * var(--spacing));
-}
-.margin-1 {
-  margin: var(--spacing);
-}
-.margin-2 {
-  margin: calc(2 * var(--spacing));
-}
-.margin-3 {
-  margin: calc(3 * var(--spacing));
-}
-
-.hide {
-  display: none;
 }
 
 a {
@@ -57,6 +35,13 @@ a {
 
 a:hover {
   color: var(--color-primary-light);
+}
+
+/**
+ * custom styles
+ */
+.hide {
+  display: none;
 }
 
 h1.logo {
@@ -69,16 +54,12 @@ h1.logo {
   animation: rainbowAnimation 5s linear infinite alternate;
 }
 
-textarea#form-description {
-  height: 120px;
-}
-
 div#app-list-controls {
   margin: calc(2 * var(--spacing)) 0;
 }
 
 /** 
- * SORTINGS & FILTERS
+ * sorting & filters
  */
 div#app-list-controls button[data-sort-direction='up'] span::before {
   content: '\f0de';
@@ -99,7 +80,7 @@ div#app-list-controls button[data-filter-overdue-state='inactive'] span::before 
 }
 
 /**
- * APP STATES
+ * app states
  */
 div#app[data-action='list'] div#app-list {
   display: block;
@@ -119,7 +100,7 @@ div#app[data-action='form'] div#app-form {
 }
 
 /**
- * ITEMS
+ * todo items
  */
 ol {
   list-style: none;
@@ -140,7 +121,10 @@ ol li.item {
     'importance description done';
   border-bottom: 1px solid var(--color-secondary-dark);
   gap: var(--spacing);
-  padding: var(--spacing);
+  padding: calc(2 * var(--spacing));
+}
+ol li.item:nth-child(1) {
+  border-top: 1px solid var(--color-secondary-dark);
 }
 
 ol[data-filter-done='yes'] li.item[data-state='done'] {

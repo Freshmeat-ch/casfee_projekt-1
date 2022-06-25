@@ -2,10 +2,5 @@
 
 ### USAGE:
 
-- npm install
+- npm i
 - npm run start
-
-### TODO:
-
-- finalize css / theme
-- finalize readme.md

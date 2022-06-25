@@ -28,7 +28,7 @@ textarea:focus,
 input:focus,
 select:focus {
   outline: none !important;
-  box-shadow: 0 0 var(--spacing) var(--color-theme-forms-shadow);
+  box-shadow: 0 0 calc(2 * var(--spacing)) var(--color-theme-forms-shadow);
 }
 
 textarea[required],
@@ -41,32 +41,12 @@ textarea[required]:focus,
 input[required]:focus,
 select[required]:focus {
   outline: none !important;
-  box-shadow: 0 0 var(--spacing) var(--color-theme-forms-shadow);
+  box-shadow: 0 0 calc(2 * var(--spacing)) var(--color-theme-forms-shadow);
 }
 
-input#form-done {
-  border: none;
-  margin: 0;
-  padding: 0;
-  border-radius: 0;
-}
-
-input#form-done:focus {
-  outline: none !important;
-  box-shadow: none;
-}
-
-button {
-  font-family: var(--font-family);
-  font-weight: 400;
-  font-size: var(--font-size);
-  padding: var(--spacing) calc(2 * var(--spacing));
-  text-decoration: none;
-  border-style: solid;
-  cursor: pointer;
-}
-
-/* reset checkbox rendering*/
+/**
+ * reset checkbox rendering
+ */
 input[type='checkbox'] {
   appearance: none;
   color: var(--color-theme-forms-checkbox-background);
@@ -80,6 +60,10 @@ input[type='checkbox']::before {
   width: calc(3 * var(--spacing));
   height: calc(3 * var(--spacing));
   border-radius: calc(var(--spacing) / 2);
+}
+
+input[type='checkbox']:focus::before {
+  box-shadow: 0 0 calc(2 * var(--spacing)) var(--color-theme-forms-shadow);
 }
 
 input[type='checkbox']:checked::before {
@@ -101,4 +85,23 @@ input[type='checkbox']:checked::after {
   font-size: 100%;
   line-height: calc(3 * var(--spacing) + 4px);
   text-align: center;
+}
+
+/**
+ * custom form elements 
+ */
+textarea#form-description {
+  height: 120px;
+}
+
+input#form-done {
+  border: none;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+}
+
+input#form-done:focus {
+  outline: none !important;
+  box-shadow: none;
 }

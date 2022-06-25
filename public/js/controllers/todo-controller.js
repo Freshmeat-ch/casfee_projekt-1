@@ -32,6 +32,9 @@ export default class TodoController {
     this.appListControls = document.querySelector('div#app-list-controls');
     this.appListItemsContainer = document.querySelector('div#app-list-items > ol');
 
+    // dialogs
+    this.deleteTodoDialog = document.querySelector('dialog#app-form-action-deleteDialog');
+
     // forms
     this.form = document.querySelector('div#app-form > form');
 
@@ -48,6 +51,8 @@ export default class TodoController {
     this.buttonFilterOverdue = document.querySelector('button[id=filterByOverdue]');
     this.buttonSave = document.querySelector('button[id=app-form-action-save]');
     this.buttonSaveAndClose = document.querySelector('button[id=app-form-action-saveAndClose]');
+    this.buttonDeleteTodoDialogConfirm = document.querySelector('button#app-form-action-deleteDialog-confirm');
+    this.buttonDeleteTodoDialogCancel = document.querySelector('button#app-form-action-deleteDialog-cancel');
 
     // buttons: all
     this.buttonsSortBy = document.querySelectorAll('button[id^=sortBy]');
@@ -71,11 +76,18 @@ export default class TodoController {
     });
 
     this.buttonDelete.addEventListener('click', async () => {
-      if (window.confirm('Möchten Sie dieses Todo wirklich löschen?')) {
-        const { id } = this.form.dataset;
-        await this.todoService.delete(id);
-        await this.changeAction('list');
-      }
+      this.deleteTodoDialog.showModal();
+    });
+
+    this.buttonDeleteTodoDialogConfirm.addEventListener('click', async () => {
+      this.deleteTodoDialog.close();
+      const { id } = this.form.dataset;
+      await this.todoService.delete(id);
+      await this.changeAction('list');
+    });
+
+    this.buttonDeleteTodoDialogCancel.addEventListener('click', async () => {
+      this.deleteTodoDialog.close();
     });
 
     this.form.addEventListener('submit', async (event) => {

@@ -1,20 +1,34 @@
+button {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: var(--font-size);
+  padding: var(--spacing) calc(2 * var(--spacing));
+  text-decoration: none;
+  border-style: solid;
+  cursor: pointer;
+}
+
 .button {
   color: var(--color-theme-button-color);
   background: var(--color-theme-button-background);
   border-color: var(--color-theme-button-border);
   border-radius: calc(var(--spacing) / 2);
 }
+
 .button:hover {
   background: var(--color-theme-button-backgroundHover);
   border-color: var(--color-theme-button-borderHover);
 }
+
 .button-alert {
-  background: var(--color-alert);
-  border-color: var(--color-alert-dark);
-  color: var(--color-white);
+  background: var(--color-theme-buttonAlert-background); /* var(--color-alert) */
+  border-color: var(--color-theme-buttonAlert-borderHover); /* var(--color-alert-dark) */
+  color: var(--color-theme-buttonAlert-color); /* var(--color-white) */
 }
+
 .button-alert:hover {
-  background: var(--color-alert-light);
+  background: var(--color-theme-buttonAlert-backgroundHover); /* var(--color-alert-light) */
+  border-color: var(--color-theme-buttonAlert-borderHover);
 }
 
 .button.button-hollow {
