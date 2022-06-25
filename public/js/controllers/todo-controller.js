@@ -75,7 +75,7 @@ export default class TodoController {
       await this.changeAction('list');
     });
 
-    this.buttonDelete.addEventListener('click', async () => {
+    this.buttonDelete.addEventListener('click', () => {
       this.deleteTodoDialog.showModal();
     });
 
@@ -86,7 +86,7 @@ export default class TodoController {
       await this.changeAction('list');
     });
 
-    this.buttonDeleteTodoDialogCancel.addEventListener('click', async () => {
+    this.buttonDeleteTodoDialogCancel.addEventListener('click', () => {
       this.deleteTodoDialog.close();
     });
 
